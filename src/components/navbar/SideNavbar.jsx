@@ -6,7 +6,7 @@ import {
   AiFillSetting, 
   AiFillCloseCircle,
 } from 'react-icons/ai';
-
+import { MdManageAccounts } from "react-icons/md";
 import { 
   BiSolidReport,
   BiHelpCircle,
@@ -35,6 +35,7 @@ const SideNavbar = () => {
     { key: 'payments', name: "Payments", icon: <BiDollar fontSize={18} />},
     { key: 'visa_exp', name: "Visa Expire", icon: <BiLogoVisa fontSize={18} />},
     { key: 'passport_exp', name: "Passport Expire", icon: <BiBook fontSize={18} /> },
+    { key: 'users', name: "Manage Users", icon: <MdManageAccounts  fontSize={18} /> },
   ];
 
   const linkActiveStyles = 'opacity-90 text-[12pt] flex flex-row item-center gap-x-2 p-2';
@@ -78,17 +79,6 @@ const SideNavbar = () => {
             <AiFillHome fontSize={18}/>
             <span>Dashboard </span>
           </NavLink>
-
-          {
-            loginInfo.userDetails.role === "admin" && 
-            <div className='flex flex-col items-center border-2 border-gray-300 p-2 bg-gray-400 text-white rounded-lg gap-y-1'>
-            <Link to={'/users'} className='mt-2'>Manage Users</Link>
-
-            <button className='absolute top-0 right-0 p-[1px] z-20'> 
-              <AiFillCloseCircle fontSize={18}/>
-            </button>
-          </div>
-          }
           
         </div>
 
