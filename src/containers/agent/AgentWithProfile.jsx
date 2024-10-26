@@ -30,7 +30,7 @@ const AgentWithProfile = ({parsedData, setSelectedProfile, setActiveTab}) => {
     })
     .then(res => {
         setProfile(res.data)
-        console.log(res.data)
+        // console.log(res.data)
 
         setLoading(false)
     })
@@ -39,17 +39,17 @@ const AgentWithProfile = ({parsedData, setSelectedProfile, setActiveTab}) => {
         setLoading(false)
     })
   }, [])
-    
+    // console.log(profile)
 
   return (
     <div className='w-full h-full '>
 
       <div className='flex flex-wrap justify-center items-center'>
 
-        <h1 className='text-center text-xl font-light p-2 flex-1'>List of Profiles ({profile.length})</h1>
+        <h1 className='text-center text-xl font-light p-2 flex-1'>Total Profiles {profile.length}</h1>
         <Link 
           to={"/profile"}
-          className='py-2 bg-slate-200 shadow-xl px-3 rounded-md flex items-center gap-1'
+          className='py-2 mb-3 mr-5 bg-slate-200 shadow-xl px-3 rounded-md flex items-center gap-1'
         ><AiOutlinePlus size={18}/> Add Profile</Link>
       </div>
       

@@ -47,7 +47,7 @@ const AgentProfile = () => {
 
       </div>
 
-      <div className='w-full justify-between flex items-center p-1 mt-2'>
+      {/* <div className='w-full justify-between flex items-center p-1 mt-2'>
         <Link
           to={'/agents'}
           className='text-yellow-700'
@@ -57,10 +57,10 @@ const AgentProfile = () => {
         
         <h1 className='text-lg font-bold'>Profiles for {parsedAgentData.name}</h1>
         <div></div>
-      </div>
+      </div> */}
          
       {/* Render tab buttons */}
-      <div className='w-full flex flex-wrap justify-evenly mt-3 border-b-2 border-b-gray-300 rounded-lg bg-gray-100 p-2'>
+      {/* <div className='w-full flex flex-wrap justify-evenly mt-3 border-b-2 border-b-gray-300 rounded-lg bg-gray-100 p-2'>
         {tabContent.map((tab, index) => (
           <>
             {tab.title.length > 0 &&
@@ -77,7 +77,7 @@ const AgentProfile = () => {
           </>
          
         ))}
-      </div>
+      </div> */}
 
       {/* Render active tab content */}
       <div className='w-full p-2 flex items-center justify-center h-full'>

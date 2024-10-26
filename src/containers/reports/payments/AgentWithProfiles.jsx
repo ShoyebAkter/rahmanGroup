@@ -209,9 +209,9 @@ const AgentWithProfiles = () => {
                         <td className="py-3 px-6 text-left">{item.bloodGroup}</td>
                         <td 
                             className={ item.paymentStatus === 'Incomplete Payment' ? 
-                            `py-3 px-6 text-left text-white bg-red-500 font-bold`:
-                             item.paymentStatus === "Payment Completed" ? "py-3 px-6 text-left text-white bg-green-500 font-bold" :
-                             "py-3 px-6 text-left text-white bg-gray-500 font-bold"}
+                            `py-3 px-6 text-left text-red-400  font-bold`:
+                             item.paymentStatus === "Payment Completed" ? "py-3 px-6 text-left text-green-500 font-bold" :
+                             ""}
                         >
                             {item.paymentStatus}
                         </td>

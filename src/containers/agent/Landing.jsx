@@ -232,8 +232,7 @@ const Landing = () => {
         Agents
         </div>
         <button
-            className="mr-3 p-2 bg-green-500 flex items-center justify-center 
-            rounded-xl px-4 gap-1 font-bold hover:bg-green-950 hover:text-white"
+            className="py-2 mb-3 mr-5 bg-slate-200 shadow-xl px-3 rounded-md flex items-center gap-1"
             onClick={() => handleNew()}
           >
             <AiOutlinePlus size={18} />
