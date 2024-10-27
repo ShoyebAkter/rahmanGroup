@@ -85,85 +85,129 @@ function PassportTable({ data, columns }) {
       </div> */}
 
       {/* On desktop */}
-      <div className='w-full flex flex-col justify-center overflow-auto h-full'>
-        <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} placeholderText={"Search Profiles"}/>
-        <table {...getTableProps()} className="min-w-full text-left font-light h-full overflow-auto">
-          <thead>
-            {
-              headerGroups.map(headerGroup =>
-                <tr {...headerGroup.getHeaderGroupProps()}>
-                  {
-                    headerGroup.headers.map(col => 
-                      <th {...col.getHeaderProps(col.getSortByToggleProps())} className='px-6 py-4'>
-                        {col.render("Header")}
-                        <span>
-                          {col.isSorted ? (col.isSortedDesc ? ' ▼' : ' ▲') :''}
-                        </span>
-                        <div>
-                          {
-                            col.canFilter ? col.render('Filter') : null
-                          }
-                        </div>
-                      </th>
-                    )
-                  }
-                </tr> 
-              )
-            }  
-          </thead>
+      <div className="w-full flex flex-col justify-center overflow-auto h-full bg-white shadow-lg rounded-lg p-4">
+  {/* Filter Input */}
+  <div className="mb-4">
+    <GlobalFilter
+      filter={globalFilter}
+      setFilter={setGlobalFilter}
+      placeholderText="Search Profiles"
+      className="w-full pl-10 pr-4 py-2 border rounded-lg shadow focus:outline-none text-gray-600"
+    />
+  </div>
 
-          <tbody {...getTableBodyProps()}>
-            {
-              page.map(row => {
-                prepareRow(row)
-                return  (
-                  <tr 
-                    {...row.getRowProps()}
-                    className='border-b transition duration-300 ease-in-out hover:bg-gray-300'
-                  >
-                    {
-                      row.cells.map(cell => 
-                      <td {...cell.getCellProps} className='whitespace-nowrap px-6 py-4'>
-                        {cell.render("Cell")}
-                      </td>)
-                    }
-                    
-                  </tr>
-                )   
-              })
-            }
-          </tbody>
-        </table>
-
-        <div className='gap-3'>
-          Page{' '}
-          <strong>
-            {pageIndex + 1 } of {pageOptions.length}
-          </strong>
-          <span>
-            {' | '} Go to page:{' '} 
-            <input type="number" defaultValue={pageIndex + 1} onChange={(e) => {
-              const pageNumber = e.target.value ? Number(e.target.value) -1 : 0
-              gotoPage(pageNumber)
-            }} className='w-10 border-2 bg-gray-300 rounded-md px-1'/>
-          </span>
-          <select value={pageSize} className="border-2 bg-gray-300 mx-1 px-1 py-[2px] rounded-lg"
-            onChange={e => setPageSize(Number(e.target.value))}
+  {/* Table */}
+  <div className="overflow-x-auto">
+    <table
+      {...getTableProps()}
+      className="min-w-full bg-white table-auto text-left font-light"
+    >
+      <thead>
+        {headerGroups.map(headerGroup => (
+          <tr
+            {...headerGroup.getHeaderGroupProps()}
+            className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal"
           >
-            {
-              [5,10,15,20,25].map(pageSize => (
-                <option value={pageSize} key={pageSize}>
-                  Show {pageSize}
-                </option>
-              ))
-            }
-          </select>
-          <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>{' << '}</button>
-          <button onClick={() => previousPage()} disabled={!canPreviousPage} className='border-2 px-2 py-1 mx-2 my-2 rounded-2xl bg-gray-300'>Previous</button>
-          <button onClick={() => nextPage()}  disabled={!canNextPage} className='border-2 px-2 py-1 mx-2 my-2 rounded-2xl bg-gray-300'>Next</button>
-          <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage} >{' >> '}</button>
-        </div>
-      </div>
+            {headerGroup.headers.map(col => (
+              <th
+                {...col.getHeaderProps(col.getSortByToggleProps())}
+                className="px-6 py-4 border-b border-gray-200 font-semibold text-left"
+              >
+                {col.render("Header")}
+                <span>
+                  {col.isSorted ? (col.isSortedDesc ? " ▼" : " ▲") : ""}
+                </span>
+                {/* <div>{col.canFilter ? col.render("Filter") : null}</div> */}
+              </th>
+            ))}
+          </tr>
+        ))}
+      </thead>
+
+      <tbody {...getTableBodyProps()}>
+        {page.map(row => {
+          prepareRow(row);
+          return (
+            <tr
+              {...row.getRowProps()}
+              className="border-b transition duration-300 ease-in-out hover:bg-gray-100"
+            >
+              {row.cells.map(cell => (
+                <td
+                  {...cell.getCellProps()}
+                  className="whitespace-nowrap px-6 py-4 text-gray-700"
+                >
+                  {cell.render("Cell")}
+                </td>
+              ))}
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  </div>
+
+  {/* Pagination Controls */}
+  <div className="flex justify-between items-center mt-4">
+    <span>
+      Page <strong>{pageIndex + 1} of {pageOptions.length}</strong>
+    </span>
+    <div className="flex items-center gap-2">
+      <button
+        onClick={() => gotoPage(0)}
+        disabled={!canPreviousPage}
+        className="px-3 py-1 bg-gray-200 rounded text-gray-600 hover:bg-gray-300 disabled:bg-gray-100"
+      >
+        {"<<"}
+      </button>
+      <button
+        onClick={() => previousPage()}
+        disabled={!canPreviousPage}
+        className="px-3 py-1 bg-gray-200 rounded text-gray-600 hover:bg-gray-300 disabled:bg-gray-100"
+      >
+        Previous
+      </button>
+      <button
+        onClick={() => nextPage()}
+        disabled={!canNextPage}
+        className="px-3 py-1 bg-gray-200 rounded text-gray-600 hover:bg-gray-300 disabled:bg-gray-100"
+      >
+        Next
+      </button>
+      <button
+        onClick={() => gotoPage(pageCount - 1)}
+        disabled={!canNextPage}
+        className="px-3 py-1 bg-gray-200 rounded text-gray-600 hover:bg-gray-300 disabled:bg-gray-100"
+      >
+        {">>"}
+      </button>
+      {/* <span>
+        | Go to page:
+        <input
+          type="number"
+          defaultValue={pageIndex + 1}
+          onChange={e => {
+            const pageNumber = e.target.value ? Number(e.target.value) - 1 : 0;
+            gotoPage(pageNumber);
+          }}
+          className="ml-2 w-12 text-center border border-gray-300 rounded px-1 py-1"
+        />
+      </span>
+      <select
+        value={pageSize}
+        onChange={e => setPageSize(Number(e.target.value))}
+        className="ml-2 border border-gray-300 rounded px-1 py-1"
+      >
+        {[5, 10, 15, 20, 25].map(size => (
+          <option key={size} value={size}>
+            Show {size}
+          </option>
+        ))}
+      </select> */}
+    </div>
+  </div>
+</div>
+
     </>
   )
 }

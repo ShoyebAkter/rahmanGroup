@@ -88,7 +88,7 @@ const FormAdd = ({ initValues , loading }) => {
             <Field
                 type="text"
                 name="idNo"
-                className={touched.idNo && errors.idNo ? "w-full p-3 px-5 text-red-800 border-2 border-red-500" : "w-full p-3  px-5 text-black border-2 border-black"}
+                className={touched.idNo && errors.idNo ? "mt-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800 w-full p-3 px-5 text-red-800 border-2 border-red-500" : "mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"}
             />
             </div>
             <div className='gap-1 flex flex-col items-start p-2 w-[275px]' >
@@ -99,7 +99,7 @@ const FormAdd = ({ initValues , loading }) => {
             <Field
                 type="text"
                 name="firstName"
-                className={touched.firstName && errors.firstName ? "w-full p-3 px-5 text-red-800 border-2 border-red-500" : "w-full p-3  px-5 text-black border-2 border-black"}
+                className={touched.firstName && errors.firstName ? "w-full p-3 px-5 text-red-800 border-2 border-red-500" : "mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"}
             />
             </div>
             <div className='gap-1 flex flex-col items-start p-2 w-[275px]' >
@@ -116,7 +116,7 @@ const FormAdd = ({ initValues , loading }) => {
                     name="lastName"
                     className={ touched.lastName && errors.lastName ?
                     "w-full p-3 px-5 text-red-800 border-2 border-red-500" :
-                    "w-full p-3  px-5 text-black border-2 border-black"
+                    "mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
                     }
                 />
             </div>
@@ -135,7 +135,7 @@ const FormAdd = ({ initValues , loading }) => {
                     name="email"
                     className={ touched.email && errors.email ?
                     "w-full p-3 px-5 text-red-800 border-2 border-red-500" :
-                    "w-full p-3  px-5 text-black border-2 border-black"
+                    "mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
                     }
                 />
             </div>
@@ -154,7 +154,7 @@ const FormAdd = ({ initValues , loading }) => {
                     name="mobile"
                     className={ touched.mobile && errors.mobile ?
                     "w-full p-3 px-5 text-red-800 border-2 border-red-500" :
-                    "w-full p-3  px-5 text-black border-2 border-black"
+                    "mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
                     }
                 />
             </div>
@@ -169,11 +169,12 @@ const FormAdd = ({ initValues , loading }) => {
                     <ErrorMessage name='DOB'/>
                 </div>
                 <DatePicker
+                type="date"
                 name="DOB"
                 dateFormat="dd/MM/yyyy" // Set the date format
                 selected={values.DOB} 
                 onChange={date => setFieldValue("DOB", date)} 
-                className={ touched.DOB && errors.DOB ? "w-full p-3 px-5 text-red-800 border-2 border-red-500" : "w-full p-3  px-5 text-black border-2 border-black" }
+                className={ touched.DOB && errors.DOB ? "w-full p-3 px-5 text-red-800 border-2 border-red-500" : "mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800" }
                 />
             </div>
 
@@ -194,27 +195,25 @@ const FormAdd = ({ initValues , loading }) => {
                 />
             </div>
 
-            <div className='gap-1 flex flex-col items-start p-2 w-[275px]' >
-                <label htmlFor="status"
-                    className={labelStyle}
-                >
-                Status * :
-                </label>
-                <div className='flex w-full animate-pulse flex-row items-end text-red-900 font-medium justify-end px-2'>
-                    <ErrorMessage name='status'/>
-                </div>
-                <Field
-                    name="status"
-                    as="select"
-                    className={ touched.status && errors.status ?
-                    "w-full p-3 px-5 text-red-800 border-2 border-red-500" :
-                    "w-full p-3  px-5 text-black border-2 border-black"
-                    }
-                >
-                    <option value="Active">Active</option>
-                    <option value="Inactive">Inactive</option>
-                </Field>
-            </div>
+            <div className='gap-1 flex flex-col items-start p-2 w-[275px]'>
+    <label htmlFor="status" className={labelStyle}>
+        Status * :
+    </label>
+    <div className='flex w-full animate-pulse flex-row items-end text-red-900 font-medium justify-end px-2'>
+        <ErrorMessage name='status' />
+    </div>
+    <Select
+        name="status"
+        onChange={option => setFieldValue("status", option.value)} // Sets the selected option's value
+        options={[
+            { value: 'Active', label: 'Active' },
+            { value: 'Inactive', label: 'Inactive' }
+        ]}
+        classNamePrefix="select"
+        className={touched.status && errors.status ? "w-full p-3 px-5 text-red-800 border-2 border-red-500" : "w-full p-3 px-5 border-black"}
+    />
+</div>
+
             
             {
                 typeof(agentId) === "undefined" &&

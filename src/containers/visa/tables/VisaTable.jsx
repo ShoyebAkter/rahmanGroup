@@ -85,85 +85,148 @@ function VisaTable({ data, columns }) {
       </div> */}
 
       {/* On desktop */}
-      <div className='w-full flex flex-col justify-center h-full'>
-        <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} placeholderText={"Search Profiles"}/>
-        <table {...getTableProps()} className="text-left font-light h-full ">
-          <thead>
-            {
-              headerGroups.map(headerGroup =>
-                <tr {...headerGroup.getHeaderGroupProps()}>
-                  {
-                    headerGroup.headers.map(col => 
-                      <th {...col.getHeaderProps(col.getSortByToggleProps())} className='px-6 py-4'>
-                        {col.render("Header")}
-                        <span>
-                          {col.isSorted ? (col.isSortedDesc ? ' ▼' : ' ▲') :''}
-                        </span>
-                        <div>
-                          {
-                            col.canFilter ? col.render('Filter') : null
-                          }
-                        </div>
-                      </th>
-                    )
-                  }
-                </tr> 
-              )
-            }  
-          </thead>
-
-          <tbody {...getTableBodyProps()}>
-            {
-              page.map(row => {
-                prepareRow(row)
-                return  (
-                  <tr 
-                    {...row.getRowProps()}
-                    className='border-b transition duration-300 ease-in-out hover:bg-gray-300'
-                  >
-                    {
-                      row.cells.map(cell => 
-                      <td {...cell.getCellProps} className='whitespace-nowrap px-6 py-4'>
-                        {cell.render("Cell")}
-                      </td>)
-                    }
-                    
-                  </tr>
-                )   
-              })
-            }
-          </tbody>
-        </table>
-
-        <div className='gap-3'>
-          Page{' '}
-          <strong>
-            {pageIndex + 1 } of {pageOptions.length}
-          </strong>
-          <span>
-            {' | '} Go to page:{' '} 
-            <input type="number" defaultValue={pageIndex + 1} onChange={(e) => {
-              const pageNumber = e.target.value ? Number(e.target.value) -1 : 0
-              gotoPage(pageNumber)
-            }} className='w-10 border-2 bg-gray-300 rounded-md px-1'/>
-          </span>
-          <select value={pageSize} className="border-2 bg-gray-300 mx-1 px-1 py-[2px] rounded-lg"
-            onChange={e => setPageSize(Number(e.target.value))}
-          >
-            {
-              [5,10,15,20,25].map(pageSize => (
-                <option value={pageSize} key={pageSize}>
-                  Show {pageSize}
-                </option>
-              ))
-            }
-          </select>
-          <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>{' << '}</button>
-          <button onClick={() => previousPage()} disabled={!canPreviousPage} className='border-2 px-2 py-1 mx-2 my-2 rounded-2xl bg-gray-300'>Previous</button>
-          <button onClick={() => nextPage()}  disabled={!canNextPage} className='border-2 px-2 py-1 mx-2 my-2 rounded-2xl bg-gray-300'>Next</button>
-          <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage} >{' >> '}</button>
-        </div>
+      <div className="container mx-auto py-6 px-4 w-full flex flex-col h-full bg-white rounded-lg shadow-lg">
+  {/* Filter Section */}
+  <div className="mb-4 flex justify-between items-center">
+    <div className="flex-1 pr-4">
+      <GlobalFilter
+        filter={globalFilter}
+        setFilter={setGlobalFilter}
+        placeholderText="Search Profiles"
+        className="w-full pl-10 pr-4 py-2 rounded-lg shadow focus:outline-none focus:shadow-outline text-gray-600 font-medium"
+      />
+      <div className="absolute top-6 left-6 inline-flex items-center p-2">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-6 h-6 text-gray-400"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth="2"
+          fill="none"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <circle cx="10" cy="10" r="7" />
+          <line x1="21" y1="21" x2="15" y2="15" />
+        </svg>
       </div>
+    </div>
+  </div>
+
+  {/* Table Section */}
+  <div className="overflow-x-auto rounded-lg shadow-lg">
+    <table
+      {...getTableProps()}
+      className="min-w-full bg-white table-auto"
+    >
+      <thead>
+        {headerGroups.map(headerGroup => (
+          <tr
+            {...headerGroup.getHeaderGroupProps()}
+            className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal"
+          >
+            {headerGroup.headers.map(col => (
+              <th
+                {...col.getHeaderProps(col.getSortByToggleProps())}
+                className="px-6 py-3 border-b border-gray-200 font-semibold text-left"
+              >
+                {col.render("Header")}
+                <span>
+                  {col.isSorted ? (col.isSortedDesc ? " ▼" : " ▲") : ""}
+                </span>
+                {/* <div>
+                  {col.canFilter ? col.render("Filter") : null}
+                </div> */}
+              </th>
+            ))}
+          </tr>
+        ))}
+      </thead>
+
+      <tbody {...getTableBodyProps()}>
+        {page.map(row => {
+          prepareRow(row);
+          return (
+            <tr
+              {...row.getRowProps()}
+              className="border-b border-gray-200 hover:bg-gray-100"
+            >
+              {row.cells.map(cell => (
+                <td
+                  {...cell.getCellProps()}
+                  className="px-6 py-4 whitespace-nowrap text-gray-700"
+                >
+                  {cell.render("Cell")}
+                </td>
+              ))}
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  </div>
+
+  {/* Pagination Controls */}
+  <div className="flex justify-between items-center mt-4">
+    <span>
+      Page <strong>{pageIndex + 1} of {pageOptions.length}</strong>
+    </span>
+    <div className="flex items-center gap-2">
+      <button
+        onClick={() => gotoPage(0)}
+        disabled={!canPreviousPage}
+        className="px-3 py-1 bg-gray-200 rounded text-gray-600 hover:bg-gray-300 disabled:bg-gray-100"
+      >
+        {"<<"}
+      </button>
+      <button
+        onClick={() => previousPage()}
+        disabled={!canPreviousPage}
+        className="px-3 py-1 bg-gray-200 rounded text-gray-600 hover:bg-gray-300 disabled:bg-gray-100"
+      >
+        Previous
+      </button>
+      <button
+        onClick={() => nextPage()}
+        disabled={!canNextPage}
+        className="px-3 py-1 bg-gray-200 rounded text-gray-600 hover:bg-gray-300 disabled:bg-gray-100"
+      >
+        Next
+      </button>
+      <button
+        onClick={() => gotoPage(pageCount - 1)}
+        disabled={!canNextPage}
+        className="px-3 py-1 bg-gray-200 rounded text-gray-600 hover:bg-gray-300 disabled:bg-gray-100"
+      >
+        {">>"}
+      </button>
+      {/* <span>
+        | Go to page:
+        <input
+          type="number"
+          defaultValue={pageIndex + 1}
+          onChange={e => {
+            const pageNumber = e.target.value ? Number(e.target.value) - 1 : 0;
+            gotoPage(pageNumber);
+          }}
+          className="ml-2 w-12 text-center border border-gray-300 rounded px-1 py-1"
+        />
+      </span>
+      <select
+        value={pageSize}
+        onChange={e => setPageSize(Number(e.target.value))}
+        className="ml-2 border border-gray-300 rounded px-1 py-1"
+      >
+        {[5, 10, 15, 20, 25].map(size => (
+          <option key={size} value={size}>
+            Show {size}
+          </option>
+        ))}
+      </select> */}
+    </div>
+  </div>
+</div>
+
     </>
   )
 }

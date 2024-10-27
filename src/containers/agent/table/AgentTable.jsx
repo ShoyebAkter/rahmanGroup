@@ -218,32 +218,32 @@ function AgentTable({
               {pageIndex + 1} of {pageOptions.length}
             </strong>
           </span>
-          <div>
+          <div className="flex gap-2">
             <button
               onClick={() => gotoPage(0)}
               disabled={!canPreviousPage}
-              className="border-2 px-2 py-1 rounded-2xl bg-gray-300 mx-1"
+              className="px-3 py-1 bg-gray-200 rounded text-gray-600 hover:bg-gray-300 disabled:bg-gray-100"
             >
               {"<<"}
             </button>
             <button
               onClick={() => previousPage()}
               disabled={!canPreviousPage}
-              className="border-2 px-2 py-1 rounded-2xl bg-gray-300 mx-1"
+              className="px-3 py-1 bg-gray-200 rounded text-gray-600 hover:bg-gray-300 disabled:bg-gray-100"
             >
               Previous
             </button>
             <button
               onClick={() => nextPage()}
               disabled={!canNextPage}
-              className="border-2 px-2 py-1 rounded-2xl bg-gray-300 mx-1"
+              className="px-3 py-1 bg-gray-200 rounded text-gray-600 hover:bg-gray-300 disabled:bg-gray-100"
             >
               Next
             </button>
             <button
               onClick={() => gotoPage(pageCount - 1)}
               disabled={!canNextPage}
-              className="border-2 px-2 py-1 rounded-2xl bg-gray-300 mx-1"
+              className="px-3 py-1 bg-gray-200 rounded text-gray-600 hover:bg-gray-300 disabled:bg-gray-100"
             >
               {">>"}
             </button>
