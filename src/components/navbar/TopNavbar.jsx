@@ -37,9 +37,9 @@ const TopNavbar = ({handlePasswordEdit}) => {
       <div className='p-1 w-1/3 relative ' >
         <input 
           type="text" 
-          className='p-[1px] border-2 border-gray-300 rounded-xl bg-gray-300 px-6 w-full opacity-50  focus:outline-none focus:border-blue-500' 
+          className='p-2 border-2 border-gray-300 rounded-xl bg-gray-300 px-6 w-full opacity-50  focus:outline-none focus:border-blue-500' 
           placeholder='Search ... ' />
-        <div className="absolute left-2 top-1/2 transform -translate-y-1/2 opacity-30">
+        <div className="absolute left-[13px] top-[28px] transform -translate-y-1/2 opacity-30">
           <AiOutlineSearch />
         </div>
       </div>
