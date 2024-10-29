@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ChartDiagram from "./ChartDiagram";
-import { Cell, Pie, PieChart, ResponsiveContainer } from "recharts";
+import { Bar, BarChart, CartesianGrid, Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 const GroupedPayments = () => {
   const [payments, setPayments] = useState({});
@@ -59,40 +59,21 @@ const GroupedPayments = () => {
     }));
   };
   const pieData = getPieData(payments);
-  const COLORS = ['#8884d8', '#82ca9d', '#ffc658', '#d084c3', '#a4de6c', '#d0ed57'];
-  const data01 = [
-    { name: 'Group A', value: 400 },
-    { name: 'Group B', value: 300 },
-    { name: 'Group C', value: 300 },
-    { name: 'Group D', value: 200 },
-  ];
+  
   return (
     <div className="container mx-auto pt-10 bg-gray-50 overflow-auto">
       <h2 className="text-xl font-semibold mb-4 w-full p-2 text-center">
         Summary of Collected Payments
       </h2>
-      <ResponsiveContainer width="100%" height={400}>
-        <PieChart>
-        <Pie data={data01} dataKey="value" cx="50%" cy="50%" outerRadius={60} fill="#82ca9d" />
-          <Pie
-            data={pieData}
-            dataKey="value"
-            cx="50%"
-            cy="50%"
-            innerRadius={70}
-            outerRadius={90}
-            fill="#8884d8"
-            label={({ name, value }) => `${name}: ${value.toLocaleString()}`}
-          >
-            {pieData.map((_, index) => (
-              <Cell
-                key={`cell-${index}`}
-                fill={COLORS[index % COLORS.length]}
-              />
-            ))}
-          </Pie>
-        </PieChart>
-      </ResponsiveContainer>
+      <BarChart width={500}
+        height={400} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}  data={pieData}>
+        {/* <CartesianGrid strokeDasharray="3 3" /> */}
+        <XAxis dataKey="name" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+          <Bar dataKey="value" fill="#8884d8" radius={[20, 20, 20, 20]} label={{ position: 'top' }} />
+        </BarChart>
     </div>
   );
 };

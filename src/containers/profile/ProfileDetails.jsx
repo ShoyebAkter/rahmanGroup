@@ -212,8 +212,6 @@ const ProfileDetails = ({ profile, setSelectedProfile, setActiveTab }) => {
 
   return (
     <div className="w-full h-full flex flex-col flex-1">
-      
-
       {Object.keys(profile).length > 0 && (
         <div className="w-full flex flex-wrap items-center justify-end px-3 py-2 gap-x-3 gap-y-2">
           {/*<button 
@@ -265,147 +263,169 @@ const ProfileDetails = ({ profile, setSelectedProfile, setActiveTab }) => {
           )}
 
           <div className="flex flex-wrap md:flex-row flex-col justify-evenly items-center gap-2">
-          <div className="bg-white overflow-hidden shadow rounded-lg border box w-full md:w-[48%] lg:w-[30%]">
-    <div className="px-4 py-5 sm:px-6">
-      <div className="flex justify-between items-center">
-        <h3 className="text-lg leading-6 font-medium text-gray-900">Personal Details</h3>
-        <button onClick={() => setIsOpen(true)} className="text-sm font-medium text-gray-500">Update</button>
-      </div>
-      <p className="mt-1 max-w-2xl text-sm text-gray-500">Basic personal details are shown below.</p>
-    </div>
-    <div className="border-t border-gray-200 px-4 py-5 sm:p-0">
-      <dl className="sm:divide-y sm:divide-gray-200">
-        {/* Mapping profile details */}
-        {[
-          { label: 'Ref No:', value: profileInit.id },
-          { label: 'Identification #.:', value: profileInit.idNo },
-          { label: 'Full Name:', value: `${profileInit.firstName} ${profileInit.lastName}` },
-          { label: 'Date of Birth:', value: profileInit.DOB },
-          { label: 'Nationality:', value: profileInit.nationality },
-          { label: 'Email Address:', value: profileInit.email },
-          { label: 'Mobile No.:', value: profileInit.mobile },
-          { label: 'Telephone:', value: profileInit.telephone },
-          { label: 'Status:', value: profileInit.status },
-        ].map((item, idx) => (
-          <div key={idx} className="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt className="text-sm font-medium text-gray-500">{item.label}</dt>
-            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{item.value}</dd>
-          </div>
-        ))}
-      </dl>
-    </div>
-  </div>
-
-  <div className="bg-white overflow-hidden shadow rounded-lg border box w-full md:w-[48%] lg:w-[30%]">
-    <div className="px-4 py-5 sm:px-6">
-      <div className="flex justify-between items-center">
-        <h3 className="text-lg leading-6 font-medium text-gray-900">Emergency Contact</h3>
-        <button onClick={() => setIsInfo3Open(true)} className="text-sm font-medium text-gray-500">Update</button>
-      </div>
-      <p className="mt-1 max-w-2xl text-sm text-gray-500">Details of the emergency contact person are below.</p>
-    </div>
-    <div className="border-t border-gray-200 px-4 py-5 sm:p-0">
-      <dl className="sm:divide-y sm:divide-gray-200">
-        {/* Emergency contact details */}
-        {[
-          { label: 'Full Name:', value: profileInit.EmergencyContacts[0]?.fullName },
-          { label: 'Mobile No.:', value: profileInit.EmergencyContacts[0]?.mobile },
-          { label: 'Telephone:', value: profileInit.EmergencyContacts[0]?.telephone },
-        ].map((item, idx) => (
-          <div key={idx} className="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt className="text-sm font-medium text-gray-500">{item.label}</dt>
-            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{item.value}</dd>
-          </div>
-        ))}
-      </dl>
-    </div>
-  </div>
-
-  <div className="bg-white overflow-hidden shadow rounded-lg border box w-full md:w-[48%] lg:w-[30%]">
-    <div className="px-4 py-5 sm:px-6">
-      <h3 className="text-lg leading-6 font-medium text-gray-900">Agent Information</h3>
-    </div>
-    <div className="border-t border-gray-200 px-4 py-5 sm:p-0">
-      <dl className="sm:divide-y sm:divide-gray-200">
-        {/* Agent information */}
-        {[
-          { label: 'Agent Name:', value: profileInit.Agent.name },
-          { label: 'Mobile No.:', value: profileInit.Agent.mobile },
-        ].map((item, idx) => (
-          <div key={idx} className="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt className="text-sm font-medium text-gray-500">{item.label}</dt>
-            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{item.value}</dd>
-          </div>
-        ))}
-      </dl>
-    </div>
-  </div>
-
-
-            <div className="overflow-auto flex flex-col w-full">
-              <div className="p-2 w-full text-center flex bg-gray-300">
-                <h1 className="text-lg font-bold self-center flex-1">
-                  Passports
-                </h1>
-                <button
-                  className="p-2 bg-white shadow-lg rounded-lg text-sm flex items-center justify-center cursor-pointer gap-1"
-                  onClick={() => setIsInfo6Open(true)}
-                >
-                  <AiFillPlusCircle size={20} />
-                  New Passport
-                </button>
+            <div className="bg-white overflow-hidden shadow rounded-lg border box w-full ">
+              <div className="px-4 py-5 sm:px-6">
+                <div className="flex justify-between items-center">
+                  <h3 className="text-lg leading-6 font-medium text-gray-900">
+                    Personal Details
+                  </h3>
+                  <button
+                    onClick={() => setIsOpen(true)}
+                    className="text-sm font-medium text-gray-500"
+                  >
+                    Update
+                  </button>
+                </div>
+                <p className="mt-1 max-w-2xl text-sm text-gray-500">
+                  Basic personal details are shown below.
+                </p>
               </div>
+              <div className="border-t w-full border-gray-200 px-4 py-5 sm:p-0">
+                <dl className="flex w-full ">
+                  {/* Mapping profile details */}
+                  {[
+                    { label: "Ref No:", value: profileInit.id },
+                    { label: "Identification #.:", value: profileInit.idNo },
+                    {
+                      label: "Full Name:",
+                      value: `${profileInit.firstName} ${profileInit.lastName}`,
+                    },
+                    { label: "Date of Birth:", value: profileInit.DOB },
+                    { label: "Nationality:", value: profileInit.nationality },
+                    { label: "Email Address:", value: profileInit.email },
+                    { label: "Mobile No.:", value: profileInit.mobile },
+                    { label: "Agent Name:", value: profileInit.Agent.name },
+                    { label: "Status:", value: profileInit.status },
+                  ].map((item, idx) => (
+                    <div key={idx} className=" py-3 sm:py-5 sm:gap-4 sm:px-6">
+                      <dt className="text-sm font-medium text-gray-500 ">
+                        {item.label}
+                      </dt>
+                      <dd className="mt-1 text-sm break-words text-gray-900 sm:mt-0 ">
+                        {item.value}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            </div>
 
-              <table className="table-auto min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-200">
-                  <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Passport No
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Issue Date
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Expiry Date
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Actions
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {profileInit.Passports.map((passport, index) => (
-                    <tr key={index}>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        {passport.passportNo}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        {passport.issueDate ? passport.issueDate : "N/A"}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        {passport.expiryDate}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap flex gap-1 items-center flex-wrap justify-center">
-                        <button
-                          className="p-2 bg-blue-400 shadow-xl rounded-lg text-xs flex items-center justify-center cursor-pointer gap-1"
-                          onClick={() => handlePassportEdit(index)}
-                        >
-                          <AiFillEdit size={18} />
-                          Edit
-                        </button>
-                        {/*<button 
+            <div className="flex justify-around gap-10 w-full">
+              <div className="overflow-auto flex flex-col w-full">
+                <div className="p-2 w-full text-center flex bg-gray-300">
+                  <h1 className="text-lg font-bold self-center flex-1">
+                    Emergency Contact
+                  </h1>
+                  <button
+                    className="p-2 bg-white shadow-lg rounded-lg text-sm flex items-center justify-center cursor-pointer gap-1"
+                    onClick={() => setIsInfo3Open(true)}
+                  >
+                    Update
+                  </button>
+                </div>
+
+                <table className="table-auto min-w-full divide-y divide-gray-200">
+                  <thead className="bg-gray-200">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Detail
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Information
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-200">
+                    {[
+                      {
+                        label: "Full Name:",
+                        value: profileInit.EmergencyContacts[0]?.fullName,
+                      },
+                      {
+                        label: "Mobile No.:",
+                        value: profileInit.EmergencyContacts[0]?.mobile,
+                      },
+                      {
+                        label: "Telephone:",
+                        value: profileInit.EmergencyContacts[0]?.telephone,
+                      },
+                    ].map((item, idx) => (
+                      <tr key={idx}>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          {item.label}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          {item.value}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <div className="overflow-auto flex flex-col w-full">
+                <div className="p-2 w-full text-center flex bg-gray-300">
+                  <h1 className="text-lg font-bold self-center flex-1">
+                    Passports
+                  </h1>
+                  <button
+                    className="p-2 bg-white shadow-lg rounded-lg text-sm flex items-center justify-center cursor-pointer gap-1"
+                    onClick={() => setIsInfo6Open(true)}
+                  >
+                    <AiFillPlusCircle size={20} />
+                    New Passport
+                  </button>
+                </div>
+
+                <table className="table-auto min-w-full divide-y divide-gray-200">
+                  <thead className="bg-gray-200">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Passport No
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Issue Date
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Expiry Date
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Actions
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-200">
+                    {profileInit.Passports.map((passport, index) => (
+                      <tr key={index}>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          {passport.passportNo}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          {passport.issueDate ? passport.issueDate : "N/A"}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          {passport.expiryDate}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap flex gap-1 items-center flex-wrap justify-center">
+                          <button
+                            className="p-2 bg-blue-400 shadow-xl rounded-lg text-xs flex items-center justify-center cursor-pointer gap-1"
+                            onClick={() => handlePassportEdit(index)}
+                          >
+                            <AiFillEdit size={18} />
+                            Edit
+                          </button>
+                          {/*<button 
                           onClick={() => deletePassport(passport.id)}
                           className='p-2 bg-red-500 shadow-xl rounded-lg text-xs flex items-center justify-center cursor-pointer gap-1'>
                           <AiFillEdit size={18} />
                           Delete
                   </button>*/}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
-
             <div className="overflow-auto flex flex-col w-full mt-8">
               <div className="p-2 w-full text-center flex bg-gray-300">
                 <h1 className="text-lg font-bold self-center flex-1">Visas</h1>

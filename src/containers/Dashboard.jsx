@@ -11,6 +11,7 @@ import { FaUserAltSlash } from "react-icons/fa";
 import { FaPassport } from "react-icons/fa";
 import { IoDocumentLockSharp } from "react-icons/io5";
 import { FaRegIdCard } from "react-icons/fa";
+import NationalityChart from "../components/NationalityChart";
 
 const Dashboard = () => {
   const apiUrl = process.env.REACT_APP_API_URL;
@@ -173,48 +174,55 @@ const Dashboard = () => {
         Welcome to Rahman Group Dashboard
       </h1>
 
-      <div className="flex flex-wrap justify-evenly w-full gap-3">
-        <Card title={"Active profiles"}>
-          <StatisticCard
-            name={<FaUserCheck fontSize={36}/>}
-            value={!loading && activeXInactive.active.length}
-          />
-        </Card>
-        <Card title={"Expired Passports"}>
-          <StatisticCard
-            name={<FaPassport fontSize={36}/>}
-            value={!loading && expiredPassports}
-          />
-        </Card>
-        <Card title={"Expired Visas"}>
-          <StatisticCard
-            name={<IoDocumentLockSharp fontSize={36}/>}
-            value={!loading && expiredVisas}
-          />
-        </Card>
-        <Card title={"Inactive profiles"}>
-          
-          <StatisticCard
-            name={<FaUserAltSlash fontSize={36} />}
-            value={!loading && activeXInactive.inActive.length}
-          />
-        </Card>
-        <Card title={"Passports Due"}>
-          
-          <StatisticCard
-            name={<FaPassport fontSize={36}/>}
-            value={!loading && passportsDue}
-          />
-        </Card>
-        <Card title={"Visas Due"}>
-          
-          <StatisticCard name={<FaRegIdCard fontSize={36}/>} value={!loading && visasDue} />
-        </Card>
+      <div className="flex flex-col justify-evenly w-full gap-3">
+        <div className="flex justify-around">
+          <Card title={"Active profiles"}>
+            <StatisticCard
+              name={<FaUserCheck fontSize={36} />}
+              value={!loading && activeXInactive.active.length}
+            />
+          </Card>
+          <Card title={"Expired Passports"}>
+            <StatisticCard
+              name={<FaPassport fontSize={36} />}
+              value={!loading && expiredPassports}
+            />
+          </Card>
+          <Card title={"Expired Visas"}>
+            <StatisticCard
+              name={<IoDocumentLockSharp fontSize={36} />}
+              value={!loading && expiredVisas}
+            />
+          </Card>
+        </div>
+        <div className="flex justify-around">
+          <Card title={"Inactive profiles"}>
+            <StatisticCard
+              name={<FaUserAltSlash fontSize={36} />}
+              value={!loading && activeXInactive.inActive.length}
+            />
+          </Card>
+          <Card title={"Passports Due"}>
+            <StatisticCard
+              name={<FaPassport fontSize={36} />}
+              value={!loading && passportsDue}
+            />
+          </Card>
+          <Card title={"Visas Due"}>
+            <StatisticCard
+              name={<FaRegIdCard fontSize={36} />}
+              value={!loading && visasDue}
+            />
+          </Card>
+        </div>
 
         <div className="flex justify-around items-center gap-5 mt-8">
           <ChartDiagram agents={agents} />
 
           <GroupedPayments />
+        </div>
+        <div>
+          <NationalityChart/>
         </div>
       </div>
     </div>

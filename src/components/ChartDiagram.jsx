@@ -20,7 +20,19 @@ const ChartDiagram = ({ agents }) => {
     name: agent.name,
     employees: agent.Employees.length
   }));
-
+  const CustomBar = (props) => {
+    const { x, y, width, height, fill } = props;
+    return (
+        <Rectangle
+            x={x}
+            y={y - 10} // Offset the bar 5 pixels above the X-axis
+            width={width}
+            height={height}
+            fill={fill}
+            radius={[10, 10, 10, 10]} // Optional: rounded corners
+        />
+    );
+};
   return (
     <div className='w-full overflow-auto pt-10 container bg-gray-50 mx-auto flex gap-3 flex-col'>
       <h2 className='w-full text-xl p-2 text-center font-semibold'>Agents with their Profiles/Employees</h2>
@@ -28,14 +40,16 @@ const ChartDiagram = ({ agents }) => {
         width={500}
         height={400}
         data={data}
-        margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+        margin={{ top: 0, right: 30, left: 20, bottom: 10 }}
       >
-        <CartesianGrid strokeDasharray="3 3" />
+        {/* <CartesianGrid strokeDasharray="3 3" /> */}
         <XAxis dataKey="name" />
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar dataKey="employees" fill="#8884d8"  label={{ position: 'top' }}>
+        <Bar dataKey="employees" fill="#8884d8" 
+         label={{ position: 'null' }} 
+         shape={CustomBar} >
         
       </Bar>
         {/* <Bar dataKey="employees" fill="#8884d8" /> */}

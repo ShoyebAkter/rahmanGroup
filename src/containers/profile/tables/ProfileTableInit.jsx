@@ -49,8 +49,7 @@ const ProfileTableInit = ({setActiveTab, setSelectedProfile}) => {
         setLoading(false)
     })
   }, [])
-    
-
+  
   return (
     <div className='w-full h-full overflow-auto'>
       {/* <h1 className='text-center text-xl font-light p-4'>List of Computer Accessories {`(${profiles.length})`}</h1> */}

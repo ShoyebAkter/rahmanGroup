@@ -52,8 +52,7 @@ function App() {
       <LoginContext.Provider value={{loginInfo, setLoginInfo}}>
         <div className="w-full h-full flex flex-col items-center justify-center bg-dimWhite font-poppins">
             <Routes>
-              <Route path='/' element={<Welcome />} exact/>
-              <Route path='/login' element={<Login />} />
+              <Route path='/' element={<Login />} />
               <Route path='*' element={<Home />}/>
             </Routes>
         </div>
@@ -61,7 +60,7 @@ function App() {
     );
   }else{
     (
-      <div>Loading... Please Wait</div>
+      <div className='text-3xl text-black'>Loading... Please Wait</div>
     )
   }
   
