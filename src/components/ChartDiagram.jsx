@@ -22,7 +22,7 @@ const ChartDiagram = ({ agents }) => {
   }));
 
   return (
-    <div className='w-full overflow-auto pt-10 container bg-gray-100 mx-auto flex gap-3 flex-col'>
+    <div className='w-full overflow-auto pt-10 container bg-gray-50 mx-auto flex gap-3 flex-col'>
       <h2 className='w-full text-xl p-2 text-center font-semibold'>Agents with their Profiles/Employees</h2>
       <BarChart
         width={500}
@@ -35,10 +35,8 @@ const ChartDiagram = ({ agents }) => {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar dataKey="employees" fill="#8884d8" shape={<TriangleBar />} label={{ position: 'top' }}>
-        {data.map((entry, index) => (
-          <Cell key={`cell-${index}`} fill={colors[index % 20]} />
-        ))}
+        <Bar dataKey="employees" fill="#8884d8"  label={{ position: 'top' }}>
+        
       </Bar>
         {/* <Bar dataKey="employees" fill="#8884d8" /> */}
       </BarChart>

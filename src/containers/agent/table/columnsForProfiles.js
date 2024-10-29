@@ -20,10 +20,9 @@ export const COLUMNS = [
     accessor: "balance.status",
     Cell: ({ value }) => (
       <span style={{ 
-        color: "white",
         fontWeight:'bold' , 
         padding: 5,
-        backgroundColor: value === "Payment Completed" ? 'green' : value === "No Payments" ? "orange" : "red"
+        color: value === "Payment Completed" ? 'green' : value === "No Payments" ? "orange" : "red"
       }}>
         {value}
       </span>

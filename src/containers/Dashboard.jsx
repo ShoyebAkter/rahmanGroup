@@ -6,6 +6,11 @@ import swal from "sweetalert";
 import GroupedPayments from "../components/GroupedPayments";
 import ChartDiagram from "../components/ChartDiagram";
 import { Link, useNavigate } from "react-router-dom";
+import { FaUserCheck } from "react-icons/fa";
+import { FaUserAltSlash } from "react-icons/fa";
+import { FaPassport } from "react-icons/fa";
+import { IoDocumentLockSharp } from "react-icons/io5";
+import { FaRegIdCard } from "react-icons/fa";
 
 const Dashboard = () => {
   const apiUrl = process.env.REACT_APP_API_URL;
@@ -163,49 +168,47 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className="w-full h-full rounded-lg m-1 gap-3 p-5 flex items-start flex-col shadow-md">
-      <h1 className="text-[18pt] font-light self-center">
-        Rahman Group Dashboard
+    <div className="w-full bg-gray-50 h-full rounded-lg  gap-3 p-5 flex items-start flex-col shadow-md">
+      <h1 className="text-[18pt] font-light ml-10">
+        Welcome to Rahman Group Dashboard
       </h1>
-      <hr className="w-full" />
 
       <div className="flex flex-wrap justify-evenly w-full gap-3">
-        <Card title={"Profiles statistics"}>
-          <Link to={"/profile"}>
-            <StatisticCard
-              name="Active profiles ~ "
-              value={!loading && activeXInactive.active.length}
-            />
-            <StatisticCard
-              name="Inactive profiles ~ "
-              value={!loading && activeXInactive.inActive.length}
-            />
-          </Link>
+        <Card title={"Active profiles"}>
+          <StatisticCard
+            name={<FaUserCheck fontSize={36}/>}
+            value={!loading && activeXInactive.active.length}
+          />
         </Card>
-        <Card title={"Passport statistics"}>
-          <Link to={"/reports/Expired Passports"}>
-            <StatisticCard
-              name="Expired Passports ~ "
-              value={!loading && expiredPassports}
-            />
-          </Link>
-          <Link to={"/passport_exp"}>
-            <StatisticCard
-              name="Passports Due ~ "
-              value={!loading && passportsDue}
-            />
-          </Link>
+        <Card title={"Expired Passports"}>
+          <StatisticCard
+            name={<FaPassport fontSize={36}/>}
+            value={!loading && expiredPassports}
+          />
         </Card>
-        <Card title={"Visa statistics"}>
-          <Link to={"/reports/Expired Visas"}>
-            <StatisticCard
-              name="Expired Visas ~ "
-              value={!loading && expiredVisas}
-            />
-          </Link>
-          <Link to={"/visa_exp"}>
-            <StatisticCard name="Visas Due ~ " value={!loading && visasDue} />
-          </Link>
+        <Card title={"Expired Visas"}>
+          <StatisticCard
+            name={<IoDocumentLockSharp fontSize={36}/>}
+            value={!loading && expiredVisas}
+          />
+        </Card>
+        <Card title={"Inactive profiles"}>
+          
+          <StatisticCard
+            name={<FaUserAltSlash fontSize={36} />}
+            value={!loading && activeXInactive.inActive.length}
+          />
+        </Card>
+        <Card title={"Passports Due"}>
+          
+          <StatisticCard
+            name={<FaPassport fontSize={36}/>}
+            value={!loading && passportsDue}
+          />
+        </Card>
+        <Card title={"Visas Due"}>
+          
+          <StatisticCard name={<FaRegIdCard fontSize={36}/>} value={!loading && visasDue} />
         </Card>
 
         <div className="flex justify-around items-center gap-5 mt-8">

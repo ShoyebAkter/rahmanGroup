@@ -7,8 +7,9 @@ const StatisticCard = ({ name, value }) => {
     //   <div className='text-2xl p-2'>{value}</div>
     // </div>
     <div className="flex justify-center items-center gap-10">
-    <div class="w-[180px] text-base text-gray-600">{name}</div>
-      <div class="w-[30px] text-2xl font-bold ">{value}</div>
+    <div class="w-[180px] text-2xl font-bold ">{value}</div>
+    <div class="w-[30px] text-base text-gray-600">{name}</div>
+      
 
     </div>
   );

@@ -49,10 +49,7 @@ const AgentTableInit = ({agents, setAgents, formData, setFormData, openModal, ha
     
 
   return (
-    <div className='w-full h-full '>
-      <h1 className='text-center text-xl font-light p-2'>List of Agents ({agents.length})</h1>
-      
-      <hr />
+    <div className='w-full'>
       {
         loading ? <p className='w-full h-full text-center text-lg py-5'>Fetching Agents ... Please wait</p> :
           (errorMessage && agents.length === 0) && (

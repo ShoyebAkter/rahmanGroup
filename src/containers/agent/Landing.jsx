@@ -222,8 +222,8 @@ const Landing = () => {
   };
 
   return (
-    <div className="w-full flex h-full flex-col items-center justify-between relative gap-3">
-      <div className="flex justify-between w-full">
+    <div className="w-full flex bg-gray-50 flex-col items-center justify-between relative gap-3">
+      <div className="flex justify-between w-full ml-10 mt-10">
         <div>
         <Link to={"/dashboard"} className="text-yellow-700">
           Dashboard
@@ -232,7 +232,7 @@ const Landing = () => {
         Agents
         </div>
         <button
-            className="py-2 mb-3 mr-5 bg-slate-200 shadow-xl px-3 rounded-md flex items-center gap-1"
+            className="py-2 mb-3 mr-12 bg-slate-200 shadow-xl px-3 rounded-md flex items-center gap-1"
             onClick={() => handleNew()}
           >
             <AiOutlinePlus size={18} />
@@ -241,7 +241,7 @@ const Landing = () => {
       </div>
 
       {/* Render active tab content */}
-      <div className="w-full items-start justify-start h-full flex gap-y-10 flex-wrap">
+      <div className="w-full items-start justify-start h-full flex flex-wrap">
         <AgentFormModal
           isOpen={modalIsOpen}
           setModal={setModalIsOpen}
@@ -251,9 +251,6 @@ const Landing = () => {
           loading={loading}
           clearData={clearData}
         />
-        <div className="w-full flex justify-end p-2">
-          
-        </div>
 
         <div className="flex items-center justify-center w-full h-full overflow-auto">
           <div className="w-full mx-10 h-full">

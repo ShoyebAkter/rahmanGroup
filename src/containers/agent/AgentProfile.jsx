@@ -1,50 +1,70 @@
-import React, { useState } from 'react'
-import { AiOutlineArrowLeft } from 'react-icons/ai';
-import { Link, useLocation } from 'react-router-dom';
-import AgentWithProfile from './AgentWithProfile';
-import ProfilePayment from '../Payment/ProfilePayment';
+import React, { useState } from "react";
+import { AiOutlineArrowLeft, AiOutlinePlus } from "react-icons/ai";
+import { Link, useLocation } from "react-router-dom";
+import AgentWithProfile from "./AgentWithProfile";
+import ProfilePayment from "../Payment/ProfilePayment";
 
 const AgentProfile = () => {
-    const location = useLocation();
-    const searchParams = new URLSearchParams(location.search);
-    const agentData = searchParams.get('agentData');
-    const [activeTab, setActiveTab] = useState(0);
-    const [selectedProfile, setSelectedProfile] = useState({});
-    // Parse agentData if needed
-    const parsedAgentData = agentData ? JSON.parse(agentData) : null;
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const agentData = searchParams.get("agentData");
+  const [activeTab, setActiveTab] = useState(0);
+  const [selectedProfile, setSelectedProfile] = useState({});
+  // Parse agentData if needed
+  const parsedAgentData = agentData ? JSON.parse(agentData) : null;
 
-    const tabContent = [
-      { title: 'Profiles', content: <AgentWithProfile parsedData={parsedAgentData} setSelectedProfile={setSelectedProfile} setActiveTab={setActiveTab}/> },
-      { title: 'Payment Details', content: <ProfilePayment setActiveTab={setActiveTab} selectedProfile={selectedProfile} /> }
-      //{ title: '', content: <ProfilePayment agentId={agentId} profile={selectedProfile} setActiveTab={setActiveTab} activeTab={activeTab}/> },
-    ];
+  const tabContent = [
+    {
+      title: "Profiles",
+      content: (
+        <AgentWithProfile
+          parsedData={parsedAgentData}
+          setSelectedProfile={setSelectedProfile}
+          setActiveTab={setActiveTab}
+        />
+      ),
+    },
+    {
+      title: "Payment Details",
+      content: (
+        <ProfilePayment
+          setActiveTab={setActiveTab}
+          selectedProfile={selectedProfile}
+        />
+      ),
+    },
+    //{ title: '', content: <ProfilePayment agentId={agentId} profile={selectedProfile} setActiveTab={setActiveTab} activeTab={activeTab}/> },
+  ];
 
-    const handleTabChange = (index) => {
-      setActiveTab(index);
-    };
+  const handleTabChange = (index) => {
+    setActiveTab(index);
+  };
 
   return (
-    <div className='w-full flex h-full flex-col items-center justify-between relative gap-3'>
-      <div className='self-start'>
-        <Link
-        to={'/dashboard'}
-        className='text-yellow-700'>
-          Dashboard
-        </Link> 
-        {' > '} 
+    <div className="w-full bg-gray-50 flex h-full flex-col items-center justify-between relative gap-3">
+      <div className="flex items-center justify-between mt-6 w-full">
+        <div className="ml-10">
+          <Link to={"/dashboard"} className="text-yellow-700">
+            Dashboard
+          </Link>
+          {" > "}
 
-        <Link
-        to={'/agents'}
-        className='text-yellow-700'>
-          Agents
-        </Link> 
+          <Link to={"/agents"} className="text-yellow-700">
+            Agents
+          </Link>
 
-        {' > '} 
+          {" > "}
 
-        { 
-          parsedAgentData.name + " Profiles"
-        }
-
+          {parsedAgentData.name + " Profiles"}
+        </div>
+        <div>
+          <Link
+            to={"/profile"}
+            className="py-2 mb-3 mr-5 bg-slate-200 shadow-xl px-3 rounded-md flex items-center gap-1"
+          >
+            <AiOutlinePlus size={18} /> Add Profile
+          </Link>
+        </div>
       </div>
 
       {/* <div className='w-full justify-between flex items-center p-1 mt-2'>
@@ -58,7 +78,7 @@ const AgentProfile = () => {
         <h1 className='text-lg font-bold'>Profiles for {parsedAgentData.name}</h1>
         <div></div>
       </div> */}
-         
+
       {/* Render tab buttons */}
       {/* <div className='w-full flex flex-wrap justify-evenly mt-3 border-b-2 border-b-gray-300 rounded-lg bg-gray-100 p-2'>
         {tabContent.map((tab, index) => (
@@ -80,12 +100,11 @@ const AgentProfile = () => {
       </div> */}
 
       {/* Render active tab content */}
-      <div className='w-full p-2 flex items-center justify-center h-full'>
+      <div className="w-full p-2 flex items-center justify-center h-full">
         {tabContent[activeTab].content}
       </div>
-
     </div>
-  )
-}
+  );
+};
 
-export default AgentProfile
+export default AgentProfile;

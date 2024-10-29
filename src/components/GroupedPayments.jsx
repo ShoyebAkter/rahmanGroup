@@ -67,7 +67,7 @@ const GroupedPayments = () => {
     { name: 'Group D', value: 200 },
   ];
   return (
-    <div className="container mx-auto pt-10 bg-gray-100 overflow-auto">
+    <div className="container mx-auto pt-10 bg-gray-50 overflow-auto">
       <h2 className="text-xl font-semibold mb-4 w-full p-2 text-center">
         Summary of Collected Payments
       </h2>

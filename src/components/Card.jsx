@@ -11,10 +11,10 @@ const Card = ({title, children}) => {
     <a class="transform  hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y bg-white"
                                         href="#">
                                         <div class="p-5">
-                                            <div class="p-5">
+                                            <div class="">
                                                 
                                                 <div
-                                                    class="bg-green-500 rounded-full py-2 px-2 text-center text-white font-semibold text-sm">
+                                                    class=" rounded-full py-2 px-2 text-xl text-black">
                                                     {title}
                                                 </div>
                                             </div>

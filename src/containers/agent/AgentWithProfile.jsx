@@ -44,17 +44,6 @@ const AgentWithProfile = ({parsedData, setSelectedProfile, setActiveTab}) => {
   return (
     <div className='w-full h-full '>
 
-      <div className='flex flex-wrap justify-center items-center'>
-
-        <h1 className='text-center text-xl font-light p-2 flex-1'>Total Profiles {profile.length}</h1>
-        <Link 
-          to={"/profile"}
-          className='py-2 mb-3 mr-5 bg-slate-200 shadow-xl px-3 rounded-md flex items-center gap-1'
-        ><AiOutlinePlus size={18}/> Add Profile</Link>
-      </div>
-      
-      
-      <hr />
       {
         loading ? <p className='w-full h-full text-center text-lg py-5'>Fetching Agents ... Please wait</p> :
           (errorMessage && profile.length === 0) && (
