@@ -8,6 +8,7 @@ import {
 } from "react-table";
 import ColumnFilter from "./ColumnFilter";
 import GlobalFilter from "./GlobalFilter";
+import { FaEye } from "react-icons/fa";
 
 function ProfileTable({ data, columns, setActiveTab, setSelectedProfile }) {
   const defaultColumn = useMemo(() => {
@@ -28,9 +29,9 @@ function ProfileTable({ data, columns, setActiveTab, setSelectedProfile }) {
             <>
               <button
                 onClick={() => handleDetails(row.values)}
-                className="p-2 border-2 rounded-xl bg-gray-300 shadow-lg"
+                className="ml-6"
               >
-                Explore
+                <FaEye fontSize={28} color="green" />
               </button>
             </>
           );
@@ -134,7 +135,7 @@ function ProfileTable({ data, columns, setActiveTab, setSelectedProfile }) {
               <GlobalFilter
                 filter={globalFilter}
                 setFilter={setGlobalFilter}
-                placeholderText="Search Profiles"
+                placeholderText="Search Employee"
                 className="w-full pl-10 pr-4 py-2 rounded-lg shadow focus:outline-none focus:shadow-outline text-gray-600 font-medium"
               />
               <div className="absolute top-6 left-6 inline-flex items-center p-2">

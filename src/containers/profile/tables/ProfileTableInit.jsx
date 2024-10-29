@@ -65,7 +65,7 @@ const ProfileTableInit = ({setActiveTab, setSelectedProfile}) => {
                  <button 
                   onClick={() => setActiveTab(0)}
                   className="py-4 font-light text-white px-5 border-2 rounded-xl bg-black-gradient font-poppins">
-                    Create a profile
+                    Add Employee
                  </button>
               </div>              
             )

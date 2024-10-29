@@ -212,14 +212,7 @@ const ProfileDetails = ({ profile, setSelectedProfile, setActiveTab }) => {
 
   return (
     <div className="w-full h-full flex flex-col flex-1">
-      {Object.keys(profile).length > 0 && (
-        <h1 className="text-[13pt] text-center">
-          ~ Full Details for{" "}
-          {profileInit.firstName + " " + profileInit.lastName}
-        </h1>
-      )}
-
-      <hr className="m-2" />
+      
 
       {Object.keys(profile).length > 0 && (
         <div className="w-full flex flex-wrap items-center justify-end px-3 py-2 gap-x-3 gap-y-2">

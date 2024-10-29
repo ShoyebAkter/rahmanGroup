@@ -81,7 +81,7 @@ const FormAdd = ({ initValues, loading }) => {
   return (
     <Form className="w-full px-10 flex flex-col items-center justify-center h-full">
       
-      <div className="w-full h-full md:h-full mx-20 flex  gap-x-8 mt-3 gap-y-4 flex-wrap overflow-auto scroll-m-0">
+      <div className="justify-center h-full md:h-full mx-20 flex  gap-x-8 mt-3 gap-y-4 flex-wrap overflow-auto scroll-m-0">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 ">
           <div className="gap-1 flex flex-col items-start p-2 w-[275px]">
             <label htmlFor="idNo" className={labelStyle}>
@@ -361,9 +361,13 @@ const FormAdd = ({ initValues, loading }) => {
           </div>
         </div> */}
 
-        <div className="w-full flex flex-wrap gap-10 gap-y-2 mt-4">
+        {/* <div className="w-full flex flex-wrap gap-10 gap-y-2 mt-4">
           
-          <div className="gap-1 flex flex-col items-start p-2 w-[275px]">
+          
+        </div> */}
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+        <div className="gap-1 flex flex-col items-start p-2 w-[275px]">
             <label htmlFor="paNo" className={labelStyle}>
               Passport Number * :
             </label>
@@ -422,10 +426,28 @@ const FormAdd = ({ initValues, loading }) => {
               dateFormat="dd/MM/yyyy"
             />
           </div>
-        </div>
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-          
+          <div className="gap-1 flex flex-col items-start p-2 w-[275px]">
+            <label htmlFor="paCopy" className={labelStyle}>
+              Passport Copy :
+            </label>
+            <div className="flex w-full animate-pulse flex-row items-end text-red-900 font-medium justify-end px-2">
+              <ErrorMessage name="paCopy" />
+            </div>
+            <input type="file"
+            className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"/>
+            
+          </div>
+          <div className="gap-1 flex flex-col items-start p-2 w-[275px]">
+            <label htmlFor="visaCopy" className={labelStyle}>
+              Visa Copy :
+            </label>
+            <div className="flex w-full animate-pulse flex-row items-end text-red-900 font-medium justify-end px-2">
+              <ErrorMessage name="visaCopy" />
+            </div>
+            <input type="file"
+            className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"/>
+            
+          </div>
           <div className="gap-1 flex flex-col items-start p-2 w-[275px]">
             <label htmlFor="viRefNo" className={labelStyle}>
               Visa Identification * :

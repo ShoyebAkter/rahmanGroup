@@ -23,7 +23,7 @@ const Landing = () => {
   // Define tab content
   const tabContent = [
     {
-      title: "Create Profile",
+      title: "Add Employee",
       content: <AddProfile setActiveTab={setActiveTab} />,
     },
     { title: 'Lists Profiles', content: <ProfileTableInit setActiveTab={setActiveTab} setSelectedProfile={setSelectedProfile}/> },
@@ -48,8 +48,8 @@ const Landing = () => {
   };
 
   return (
-    <div className="w-full flex h-full flex-col items-center justify-between relative gap-3">
-      <div className="flex items-center w-full justify-between">
+    <div className="w-full bg-gray-50 flex h-full flex-col items-center justify-between relative gap-3">
+      <div className="flex items-center w-full justify-between mt-6">
         <div className="ml-10">
           <Link to={"/dashboard"} className="text-yellow-700">
             Dashboard
@@ -58,7 +58,7 @@ const Landing = () => {
           {
             //parsedAgentData.name + " "
           }
-          Profiles
+          Employee
         </div>
         <div className="mr-10">
         {tabContent.map((tab, index) => (
