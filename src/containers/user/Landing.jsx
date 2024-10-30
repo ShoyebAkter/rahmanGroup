@@ -46,7 +46,7 @@ const Landing = () => {
   };
 
   return (
-    <div className="w-full  flex h-full flex-col items-center justify-between relative gap-3">
+    <div className="w-full bg-gray-50 flex h-full flex-col items-center justify-between relative gap-3">
       <div className="flex py-5 items-center w-full justify-between mt-6">
         <div className="ml-10">
           <Link to={"/dashboard"} className="text-yellow-700">

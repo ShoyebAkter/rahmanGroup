@@ -105,50 +105,80 @@ const UserDetails = ({user, setActiveTab, setSelected}) => {
   
   return (
     <div className="container mx-auto px-4 py-8">
-      {
-        Object.keys(user).length === 0 ? <div className='flex items-end justify-center'>
-          <button className='px-4 py-2 rounded-md bg-slate-300' onClick={() => setActiveTab(1)}>Click me. To explore a user</button>
-        </div> : 
-        <div className="bg-blue-100 border-t-4 border-blue-500 rounded-b text-blue-900 px-4 py-3 shadow-md" role="alert">
-        <div className="flex justify-between md:flex-row flex-col">
-          <div>
-            <p className="font-bold">User Details</p>
-            <p className="text-lg font-semibold mb-2">Name: {user.firstName} {user.lastName}</p>
-            <p className="text-gray-600 mb-2">Mobile: {user.mobile}</p>
-            <p className="text-gray-600 mb-2">Email: {user.LoginDetail.email}</p>
-            <p className="text-gray-600 mb-2">User Role: {user.LoginDetail.UserRole.roleName}</p>
-            <p className="text-gray-600 mb-2">Created At: {new Date(user.createdAt).toLocaleString()}</p>
-            <p className="text-gray-600 mb-2">Updated At: {new Date(user.updatedAt).toLocaleString()}</p>
-            <p className={user.LoginDetail.status.toString() === "true" ? "text-green-600 mb-2" : "text-red-600 mb-2"}>
-              Login Detail Status: {user.LoginDetail.status ? 'Active' : 'Inactive'}
+  {Object.keys(user).length === 0 ? (
+    <div className="flex items-center justify-center">
+      <button
+        className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md shadow-lg transition duration-150"
+        onClick={() => setActiveTab(1)}
+      >
+        Click here to explore a user
+      </button>
+    </div>
+  ) : (
+    <div className="bg-white border-t-4 border-blue-500 rounded-lg text-gray-800 p-6 shadow-lg">
+      <div className="flex flex-col md:flex-row md:justify-between">
+        {/* User Information */}
+        <div className="flex-1">
+          <p className="text-2xl font-bold mb-4 text-blue-700">User Details</p>
+          <div className="text-lg space-y-2">
+            <p>
+              <span className="font-semibold">Name:</span> {user.firstName} {user.lastName}
+            </p>
+            <p>
+              <span className="font-semibold">Mobile:</span> {user.mobile}
+            </p>
+            <p>
+              <span className="font-semibold">Email:</span> {user.LoginDetail.email}
+            </p>
+            <p>
+              <span className="font-semibold">User Role:</span> {user.LoginDetail.UserRole.roleName}
+            </p>
+            <p>
+              <span className="font-semibold">Created At:</span> {new Date(user.createdAt).toLocaleString()}
+            </p>
+            <p>
+              <span className="font-semibold">Updated At:</span> {new Date(user.updatedAt).toLocaleString()}
+            </p>
+            <p className={user.LoginDetail.status ? "text-green-600" : "text-red-600"}>
+              <span className="font-semibold">Login Status:</span> {user.LoginDetail.status ? "Active" : "Inactive"}
             </p>
           </div>
-          <div className="flex items-center gap-2 ">
-            <button onClick={handleEditClick} className="bg-blue-500 md:text-lg text-sm hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-              Edit
-            </button>
+        </div>
 
-            {
-              <button onClick={handlePasswordEdit} className="bg-orange-500 md:text-lg text-sm hover:bg-orange-700 text-white font-bold py-2 px-4 rounded mr-1">
-              Reset Password
-              </button>
-            }
+        {/* Action Buttons */}
+        <div className="flex flex-col gap-4 mt-6 lg:mt-0">
+          <button
+            onClick={handleEditClick}
+            className="bg-blue-500 text-white font-semibold hover:bg-blue-700 py-2 px-4 rounded-md shadow-md transition duration-150"
+          >
+            Edit
+          </button>
 
-            {
-              user.LoginDetail.UserRole.roleName !== "admin" && <button onClick={() => onDelete(user.id)} className="bg-red-500 md:text-lg text-sm hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-1">
+          <button
+            onClick={handlePasswordEdit}
+            className="bg-orange-500 text-white font-semibold hover:bg-orange-700 py-2 px-4 rounded-md shadow-md transition duration-150"
+          >
+            Reset Password
+          </button>
+
+          {user.LoginDetail.UserRole.roleName !== "admin" && (
+            <button
+              onClick={() => onDelete(user.id)}
+              className="bg-red-500 text-white font-semibold hover:bg-red-700 py-2 px-4 rounded-md shadow-md transition duration-150"
+            >
               Delete
             </button>
-            }
-            
-          </div>
+          )}
         </div>
       </div>
-      }
-    
-      {showModal && <EditUserModal user={user} onSave={handleEdit} onCancel={handleCancel} />}
-
-      {showPasswordModal && <EditPasswordModal user={{id:user.id}} onCancel={handlePasswordCancel} />}
     </div>
+  )}
+
+  {/* Modals */}
+  {showModal && <EditUserModal user={user} onSave={handleEdit} onCancel={handleCancel} />}
+  {showPasswordModal && <EditPasswordModal user={{ id: user.id }} onCancel={handlePasswordCancel} />}
+</div>
+
   );
 
 };
