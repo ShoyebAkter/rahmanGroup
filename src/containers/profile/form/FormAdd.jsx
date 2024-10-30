@@ -79,11 +79,11 @@ const FormAdd = ({ initValues, loading }) => {
   }, []);
 
   return (
-    <Form className="w-full px-10 flex flex-col items-center justify-center h-full">
+    <Form className="w-full bg-white rounded-xl px-10 flex flex-col items-center justify-center h-full">
       
-      <div className="justify-center h-full md:h-full mx-20 flex  gap-x-8 mt-3 gap-y-4 flex-wrap overflow-auto scroll-m-0">
+      <div className="justify-center h-full md:h-full px-5 mx-10 flex  gap-x-8 mt-3 gap-y-4 flex-wrap  scroll-m-0">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 ">
-          <div className="gap-1 flex flex-col items-start p-2 w-[275px]">
+          <div className="gap-1 flex flex-col items-start p-2 w-[400px]">
             <label htmlFor="idNo" className={labelStyle}>
               Identification No * :
             </label>
@@ -100,7 +100,7 @@ const FormAdd = ({ initValues, loading }) => {
               }
             />
           </div>
-          <div className="gap-1 flex flex-col items-start p-2 w-[275px]">
+          <div className="gap-1 flex flex-col items-start p-2 w-[400px]">
             <label htmlFor="firstName" className={labelStyle}>
               First Name * :
             </label>
@@ -117,7 +117,7 @@ const FormAdd = ({ initValues, loading }) => {
               }
             />
           </div>
-          <div className="gap-1 flex flex-col items-start p-2 w-[275px]">
+          <div className="gap-1 flex flex-col items-start p-2 w-[400px]">
             <label htmlFor="lastName" className={labelStyle}>
               Last Name * :
             </label>
@@ -135,7 +135,7 @@ const FormAdd = ({ initValues, loading }) => {
             />
           </div>
 
-          <div className="gap-1 flex flex-col items-start p-2 w-[275px]">
+          <div className="gap-1 flex flex-col items-start p-2 w-[400px]">
             <label htmlFor="email" className={labelStyle}>
               Email Address * :
             </label>
@@ -153,7 +153,7 @@ const FormAdd = ({ initValues, loading }) => {
             />
           </div>
 
-          <div className="gap-1 flex flex-col items-start p-2 w-[275px]">
+          <div className="gap-1 flex flex-col items-start p-2 w-[400px]">
             <label htmlFor="mobile" className={labelStyle}>
               Mobile * :
             </label>
@@ -171,7 +171,7 @@ const FormAdd = ({ initValues, loading }) => {
             />
           </div>
 
-          <div className="gap-1 flex flex-col items-start p-2 w-[275px]">
+          <div className="gap-1 flex flex-col items-start p-2 w-[400px]">
             <label htmlFor="DOB" className={labelStyle}>
               Date of Birth * :
             </label>
@@ -193,7 +193,7 @@ const FormAdd = ({ initValues, loading }) => {
           </div>
 
           {/* Repeat similar structure for other fields */}
-          <div className="gap-1 flex flex-col items-start p-2 w-[275px]">
+          <div className="gap-1 flex flex-col items-start p-2 w-[400px]">
             <label htmlFor="nationality" className={labelStyle}>
               Nationality * :
             </label>
@@ -213,7 +213,7 @@ const FormAdd = ({ initValues, loading }) => {
             />
           </div>
 
-          <div className="gap-1 flex flex-col items-start p-2 w-[275px]">
+          <div className="gap-1 flex flex-col items-start p-2 w-[400px]">
             <label htmlFor="status" className={labelStyle}>
               Status * :
             </label>
@@ -237,7 +237,7 @@ const FormAdd = ({ initValues, loading }) => {
           </div>
 
           {typeof agentId === "undefined" && (
-            <div className="gap-1 flex flex-col items-start p-2 w-[275px]">
+            <div className="gap-1 flex flex-col items-start p-2 w-[400px]">
               <label htmlFor="agentId" className={labelStyle}>
                 Select Agent * :
               </label>
@@ -256,7 +256,7 @@ const FormAdd = ({ initValues, loading }) => {
                   }
                 />
               ) : (
-                <div className=" flex flex-col items-start w-[275px]">
+                <div className=" flex flex-col items-start w-[400px]">
                   
                   <div className="flex w-full animate-pulse flex-row items-end text-red-900 font-medium justify-end px-2">
                     <ErrorMessage name="agentId" />
@@ -296,7 +296,7 @@ const FormAdd = ({ initValues, loading }) => {
           <div className="w-full p-3 bg-slate-400 md:mr-[120px] rounded-md">
             <h1 className="text-xl">Emergency & Health Info</h1>
           </div>
-          <div className="gap-1 flex flex-col items-start p-2 w-[275px]">
+          <div className="gap-1 flex flex-col items-start p-2 w-[400px]">
             <label htmlFor="emName" className={labelStyle}>
               Emergency Contact Name:
             </label>
@@ -314,7 +314,7 @@ const FormAdd = ({ initValues, loading }) => {
             />
           </div>
 
-          <div className="gap-1 flex flex-col items-start p-2 w-[275px]">
+          <div className="gap-1 flex flex-col items-start p-2 w-[400px]">
             <label htmlFor="emMobile" className={labelStyle}>
               Emergency Contact:
             </label>
@@ -332,7 +332,7 @@ const FormAdd = ({ initValues, loading }) => {
             />
           </div>
 
-          <div className="gap-1 flex flex-col items-start p-2 w-[275px]">
+          <div className="gap-1 flex flex-col items-start p-2 w-[400px]">
             <label htmlFor="bloodGroup" className={labelStyle}>
               Blood Group:
             </label>
@@ -367,7 +367,7 @@ const FormAdd = ({ initValues, loading }) => {
         </div> */}
         
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-        <div className="gap-1 flex flex-col items-start p-2 w-[275px]">
+        <div className="gap-1 flex flex-col items-start p-2 w-[400px]">
             <label htmlFor="paNo" className={labelStyle}>
               Passport Number * :
             </label>
@@ -381,13 +381,13 @@ const FormAdd = ({ initValues, loading }) => {
               className={
                 touched.paNo && errors.paNo
                 ? "w-full p-3 px-5 text-red-800 border-2 border-red-500"
-                  : "mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                  : "mt-2 p-4 w-full border-2 rounded-lg"
               }
               autoComplete="off"
             />
           </div>
 
-          <div className="gap-1 flex flex-col items-start p-2 w-[275px]">
+          <div className="gap-1 flex flex-col items-start p-2 w-[400px]">
             <label htmlFor="paIssueDate" className={labelStyle}>
               Passport Issue Date :
             </label>
@@ -401,13 +401,13 @@ const FormAdd = ({ initValues, loading }) => {
               className={
                 touched.paIssueDate && errors.paIssueDate
                 ? "w-full p-3 px-5 text-red-800 border-2 border-red-500"
-                  : "mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                  : "mt-2 p-4 w-full border-2 rounded-lg"
               }
               dateFormat="dd/MM/yyyy"
             />
           </div>
 
-          <div className="gap-1 flex flex-col items-start p-2 w-[275px]">
+          <div className="gap-1 flex flex-col items-start p-2 w-[400px]">
             <label htmlFor="paExpDate" className={labelStyle}>
               Passport Expiry Date * :
             </label>
@@ -421,12 +421,12 @@ const FormAdd = ({ initValues, loading }) => {
               className={
                 touched.paExpDate && errors.paExpDate
                 ? "w-full p-3 px-5 text-red-800 border-2 border-red-500"
-                  : "mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                  : "mt-2 p-4 w-full border-2 rounded-lg"
               }
               dateFormat="dd/MM/yyyy"
             />
           </div>
-          <div className="gap-1 flex flex-col items-start p-2 w-[275px]">
+          <div className="gap-1 flex flex-col items-start p-2 w-[400px]">
             <label htmlFor="paCopy" className={labelStyle}>
               Passport Copy :
             </label>
@@ -434,10 +434,10 @@ const FormAdd = ({ initValues, loading }) => {
               <ErrorMessage name="paCopy" />
             </div>
             <input type="file"
-            className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"/>
+            className="mt-2 p-4 w-full border-2 rounded-lg"/>
             
           </div>
-          <div className="gap-1 flex flex-col items-start p-2 w-[275px]">
+          <div className="gap-1 flex flex-col items-start p-2 w-[400px]">
             <label htmlFor="visaCopy" className={labelStyle}>
               Visa Copy :
             </label>
@@ -445,10 +445,10 @@ const FormAdd = ({ initValues, loading }) => {
               <ErrorMessage name="visaCopy" />
             </div>
             <input type="file"
-            className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"/>
+            className="mt-2 p-4 w-full border-2 rounded-lg"/>
             
           </div>
-          <div className="gap-1 flex flex-col items-start p-2 w-[275px]">
+          <div className="gap-1 flex flex-col items-start p-2 w-[400px]">
             <label htmlFor="viRefNo" className={labelStyle}>
               Visa Identification * :
             </label>
@@ -462,12 +462,12 @@ const FormAdd = ({ initValues, loading }) => {
               className={
                 touched.viId && errors.viId
                 ? "w-full p-3 px-5 text-red-800 border-2 border-red-500"
-                  : "mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                  : "mt-2 p-4 w-full border-2 rounded-lg"
               }
               autoComplete="off"
             />
           </div>
-          <div className="gap-1 flex flex-col items-start p-2 w-[275px]">
+          <div className="gap-1 flex flex-col items-start p-2 w-[400px]">
             <label htmlFor="viRefNo" className={labelStyle}>
               Visa Reference Number :
             </label>
@@ -481,12 +481,12 @@ const FormAdd = ({ initValues, loading }) => {
               className={
                 touched.viRefNo && errors.viRefNo
                 ? "w-full p-3 px-5 text-red-800 border-2 border-red-500"
-                  : "mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                  : "mt-2 p-4 w-full border-2 rounded-lg"
               }
               autoComplete="off"
             />
           </div>
-          <div className="gap-1 flex flex-col items-start p-2 w-[275px]">
+          <div className="gap-1 flex flex-col items-start p-2 w-[400px]">
             <label htmlFor="viStatus" className={labelStyle}>
               Status * :
             </label>
@@ -499,7 +499,7 @@ const FormAdd = ({ initValues, loading }) => {
               className={
                 touched.viStatus && errors.viStatus
                 ? "w-full p-3 px-5 text-red-800 border-2 border-red-500"
-                  : "mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                  : "mt-2 p-4 w-full border-2 rounded-lg"
               }
             >
               <option value="">Select ... </option>
@@ -510,7 +510,7 @@ const FormAdd = ({ initValues, loading }) => {
               <option value="Expired">Expired</option>
             </Field>
           </div>
-          <div className="gap-1 flex flex-col items-start p-2 w-[275px]">
+          <div className="gap-1 flex flex-col items-start p-2 w-[400px]">
             <label htmlFor="viIssueDate" className={labelStyle}>
               Visa Issue Date :
             </label>
@@ -524,12 +524,12 @@ const FormAdd = ({ initValues, loading }) => {
               className={
                 touched.viIssueDate && errors.viIssueDate
                 ? "w-full p-3 px-5 text-red-800 border-2 border-red-500"
-                  : "mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                  : "mt-2 p-4 w-full border-2 rounded-lg"
                }
               dateFormat="dd/MM/yyyy"
             />
           </div>
-          <div className="gap-1 flex flex-col items-start p-2 w-[275px]">
+          <div className="gap-1 flex flex-col items-start p-2 w-[400px]">
             <label htmlFor="viExpDate" className={labelStyle}>
               Visa Expiry Date * :
             </label>
@@ -543,7 +543,7 @@ const FormAdd = ({ initValues, loading }) => {
               className={
                 touched.viExpDate && errors.viExpDate
                 ? "w-full p-3 px-5 text-red-800 border-2 border-red-500"
-                  : "mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                  : "mt-2 p-4 w-full border-2 rounded-lg"
               }
               dateFormat="dd/MM/yyyy"
             />

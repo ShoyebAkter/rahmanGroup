@@ -43,10 +43,10 @@ function AgentTable({
                 onClick={() => handleOtherDetails(row.values)}
                 className="p-2 text-sm "
               >
-                <FaEye fontSize={18} />
+                <FaEye fontSize={28} color="green"/>
               </button>
               <button onClick={() => handleDetails(row.values)} className="">
-                <MdEdit fontSize={18} />
+                <MdEdit fontSize={28} color="green"/>
               </button>
               {/* <button 
                 onClick={() => deleteRecord(row.values)} 

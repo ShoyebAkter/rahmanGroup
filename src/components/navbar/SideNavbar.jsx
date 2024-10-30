@@ -32,10 +32,11 @@ const SideNavbar = () => {
   const devices = [
     
     { key: 'profile', name: "Employee", icon: <BiUser fontSize={18}/>},
-    { key: 'payments', name: "Payments", icon: <BiDollar fontSize={18} />},
-    { key: 'agents', name: "Agents", icon: <BiBuildingHouse fontSize={18} />},
     { key: 'visa_exp', name: "Visa Expire", icon: <BiLogoVisa fontSize={18} />},
     { key: 'passport_exp', name: "Passport Expire", icon: <BiBook fontSize={18} /> },
+    { key: 'agents', name: "Agents", icon: <BiBuildingHouse fontSize={18} />},
+    { key: 'payments', name: "Payments", icon: <BiDollar fontSize={18} />},
+    
     { key: 'users', name: "Manage Users", icon: <MdManageAccounts  fontSize={18} /> },
   ];
 
