@@ -62,7 +62,7 @@ const AgentProfile = () => {
             to={"/profile"}
             className="py-2 mb-3 mr-5 bg-slate-200 shadow-xl px-3 rounded-md flex items-center gap-1"
           >
-            <AiOutlinePlus size={18} /> Add Profile
+            <AiOutlinePlus size={18} /> Add Employee
           </Link>
         </div>
       </div>

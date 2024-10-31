@@ -4,7 +4,7 @@ import VisaTableInit from './tables/VisaTableInit'
 
 const Landing = () => {
   return (
-    <div className='w-full flex h-full flex-col items-center justify-between relative gap-3'>
+    <div className='w-full bg-gray-50 flex h-full flex-col items-center justify-between relative gap-3'>
       <div className='self-start'>
         <Link
         to={'/dashboard'}
