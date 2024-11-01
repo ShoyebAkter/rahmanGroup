@@ -1,8 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import VisaTableInit from './tables/VisaTableInit'
 
 const Landing = () => {
+  const location = useLocation();
+  const pathKey = location.pathname.split("/").pop();
+  // console.log(pathKey)
   return (
     <div className='w-full bg-gray-50 flex h-full flex-col items-center justify-between relative gap-3'>
       <div className='self-start'>
@@ -17,9 +20,9 @@ const Landing = () => {
 
       {/* Render active tab content */}
       <div className='w-full p-2 flex items-center flex-col justify-center overflow-auto h-full gap-3'>
-        <h1 className='text-xl font-semibold'>Visas due to expire within 90 days</h1>
+        <h1 className='text-xl font-semibold'>Visas due to expire within {pathKey!== 'visa_exp' && pathKey}</h1>
 
-        <VisaTableInit />
+        <VisaTableInit pathKey={pathKey} />
       </div>
 
     </div>

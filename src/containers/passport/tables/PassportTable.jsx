@@ -1,16 +1,40 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useTable, useSortBy, useFilters, useGlobalFilter, usePagination } from 'react-table';
 import ColumnFilter from './ColumnFilter';
 import GlobalFilter from './GlobalFilter';
+import { useLocation } from 'react-router-dom';
 
 function PassportTable({ data, columns }) {
-
+  const [filterData,setFilterData]=useState([])
+  const location = useLocation();
+  const pathKey = location.pathname.split("/").pop();
   const defaultColumn = useMemo(() => {
     return {
       Filter: ColumnFilter
     }
   }, [])
-
+  useEffect(()=>{
+    const expireDate =
+    pathKey === "1_month"
+      ? 30
+      : pathKey === "3_month"
+      ? 90
+      : pathKey === "6_month"
+      ? 180
+      : null;
+   const expiringSoon = data.filter((item) => {
+    if (expireDate === 30) {
+      return item.daysUntilExpiry <= 30;
+    } else if (expireDate === 90) {
+      return item.daysUntilExpiry > 30 && item.daysUntilExpiry <= 90;
+    } else if (expireDate === 180) {
+      return item.daysUntilExpiry > 90 && item.daysUntilExpiry <= 180;
+    } else {
+      return false; // No items if expireDate is not 30, 60, or 90
+    }
+  });
+  setFilterData(expiringSoon)
+  },[pathKey,data])
   const {
     getTableProps,
     getTableBodyProps,
@@ -27,7 +51,7 @@ function PassportTable({ data, columns }) {
     prepareRow,
     state,  
     setGlobalFilter, 
-  } = useTable({ columns, data, defaultColumn} , useFilters, useGlobalFilter, useSortBy, usePagination)
+  } = useTable({ columns, data: filterData || [], defaultColumn} , useFilters, useGlobalFilter, useSortBy, usePagination)
 
   const { globalFilter, pageIndex, pageSize } = state
 

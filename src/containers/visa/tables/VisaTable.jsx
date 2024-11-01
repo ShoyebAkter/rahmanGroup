@@ -1,16 +1,45 @@
-import React, { useEffect, useMemo } from 'react';
-import { useTable, useSortBy, useFilters, useGlobalFilter, usePagination } from 'react-table';
-import ColumnFilter from './ColumnFilter';
-import GlobalFilter from './GlobalFilter';
+import React, { useEffect, useMemo, useState } from "react";
+import {
+  useTable,
+  useSortBy,
+  useFilters,
+  useGlobalFilter,
+  usePagination,
+} from "react-table";
+import ColumnFilter from "./ColumnFilter";
+import GlobalFilter from "./GlobalFilter";
 
-function VisaTable({ data, columns }) {
-
+function VisaTable({ data, columns, pathKey }) {
+  const [filterData,setFilterData]=useState([])
+  // console.log(pathKey)
   const defaultColumn = useMemo(() => {
     return {
-      Filter: ColumnFilter
+      Filter: ColumnFilter,
+    };
+  }, []);
+  useEffect(()=>{
+    const expireDate =
+    pathKey === "30_days"
+      ? 30
+      : pathKey === "60_days"
+      ? 60
+      : pathKey === "90_days"
+      ? 90
+      : null;
+   const expiringSoon = data.filter((item) => {
+    if (expireDate === 30) {
+      return item.daysUntilExpiry <= 30;
+    } else if (expireDate === 60) {
+      return item.daysUntilExpiry > 30 && item.daysUntilExpiry <= 60;
+    } else if (expireDate === 90) {
+      return item.daysUntilExpiry > 60 && item.daysUntilExpiry <= 90;
+    } else {
+      return false; // No items if expireDate is not 30, 60, or 90
     }
-  }, [])
-
+  });
+  setFilterData(expiringSoon)
+  },[pathKey,data])
+  // console.log(filterData);
   const {
     getTableProps,
     getTableBodyProps,
@@ -25,22 +54,25 @@ function VisaTable({ data, columns }) {
     pageCount,
     setPageSize,
     prepareRow,
-    state,  
-    setGlobalFilter, 
-  } = useTable({ columns, data, defaultColumn} , useFilters, useGlobalFilter, useSortBy, usePagination)
+    state,
+    setGlobalFilter,
+  } = useTable(
+    { columns, data: filterData || [] , defaultColumn },
+    useFilters,
+    useGlobalFilter,
+    useSortBy,
+    usePagination
+  );
 
-  const { globalFilter, pageIndex, pageSize } = state
-
-  const handleDetails = profile => {
-
-  } 
-
+  const { globalFilter, pageIndex, pageSize } = state;
+  // console.log(page)
+  const handleDetails = (profile) => {};
+  // console.log(data,pathKey)
   useEffect(() => {
-    setPageSize(5)
-  }, [])
+    setPageSize(5);
+  }, []);
 
   return (
-
     <>
       {/* On mobile */}
       {/* <div className='w-full md:hidden flex flex-col justify-center overflow-auto'> 
@@ -86,121 +118,124 @@ function VisaTable({ data, columns }) {
 
       {/* On desktop */}
       <div className="container mx-auto py-6 px-4 w-full flex flex-col h-full bg-white rounded-lg shadow-lg">
-  {/* Filter Section */}
-  <div className="mb-4 flex justify-between items-center">
-    <div className="flex-1 pr-4">
-      <GlobalFilter
-        filter={globalFilter}
-        setFilter={setGlobalFilter}
-        placeholderText="Search Profiles"
-        className="w-full pl-10 pr-4 py-2 rounded-lg shadow focus:outline-none focus:shadow-outline text-gray-600 font-medium"
-      />
-      <div className="absolute top-6 left-6 inline-flex items-center p-2">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-6 h-6 text-gray-400"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth="2"
-          fill="none"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <circle cx="10" cy="10" r="7" />
-          <line x1="21" y1="21" x2="15" y2="15" />
-        </svg>
-      </div>
-    </div>
-  </div>
-
-  {/* Table Section */}
-  <div className="overflow-x-auto rounded-lg shadow-lg">
-    <table
-      {...getTableProps()}
-      className="min-w-full bg-white table-auto"
-    >
-      <thead>
-        {headerGroups.map(headerGroup => (
-          <tr
-            {...headerGroup.getHeaderGroupProps()}
-            className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal"
-          >
-            {headerGroup.headers.map(col => (
-              <th
-                {...col.getHeaderProps(col.getSortByToggleProps())}
-                className="px-6 py-3 border-b border-gray-200 font-semibold text-left"
+        {/* Filter Section */}
+        <div className="mb-4 flex justify-between items-center">
+          <div className="relative flex-1 pr-4">
+            <GlobalFilter
+              filter={globalFilter}
+              setFilter={setGlobalFilter}
+              placeholderText="Search Profiles"
+              className="w-full pl-10 pr-4 py-2 rounded-lg shadow focus:outline-none focus:shadow-outline text-gray-600 font-medium"
+            />
+            <div className="absolute top-6 left-6 inline-flex items-center p-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-6 h-6 top-6 left-6 text-gray-400"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="2"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               >
-                {col.render("Header")}
-                <span>
-                  {col.isSorted ? (col.isSortedDesc ? " ▼" : " ▲") : ""}
-                </span>
-                {/* <div>
+                <circle cx="10" cy="10" r="7" />
+                <line x1="21" y1="21" x2="15" y2="15" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        {/* Table Section */}
+        <div className="overflow-x-auto rounded-lg shadow-lg">
+          <table
+            {...getTableProps()}
+            className="min-w-full bg-white table-auto"
+          >
+            <thead>
+              {headerGroups.map((headerGroup) => (
+                <tr
+                  {...headerGroup.getHeaderGroupProps()}
+                  className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal"
+                >
+                  {headerGroup.headers.map((col) => (
+                    <th
+                      {...col.getHeaderProps(col.getSortByToggleProps())}
+                      className="px-6 py-3 border-b border-gray-200 font-semibold text-left"
+                    >
+                      {col.render("Header")}
+                      <span>
+                        {col.isSorted ? (col.isSortedDesc ? " ▼" : " ▲") : ""}
+                      </span>
+                      {/* <div>
                   {col.canFilter ? col.render("Filter") : null}
                 </div> */}
-              </th>
-            ))}
-          </tr>
-        ))}
-      </thead>
-
-      <tbody {...getTableBodyProps()}>
-        {page.map(row => {
-          prepareRow(row);
-          return (
-            <tr
-              {...row.getRowProps()}
-              className="border-b border-gray-200 hover:bg-gray-100"
-            >
-              {row.cells.map(cell => (
-                <td
-                  {...cell.getCellProps()}
-                  className="px-6 py-4 whitespace-nowrap text-gray-700"
-                >
-                  {cell.render("Cell")}
-                </td>
+                    </th>
+                  ))}
+                </tr>
               ))}
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
-  </div>
+            </thead>
 
-  {/* Pagination Controls */}
-  <div className="flex justify-between items-center mt-4">
-    <span>
-      Page <strong>{pageIndex + 1} of {pageOptions.length}</strong>
-    </span>
-    <div className="flex items-center gap-2">
-      <button
-        onClick={() => gotoPage(0)}
-        disabled={!canPreviousPage}
-        className="px-3 py-1 bg-gray-200 rounded text-gray-600 hover:bg-gray-300 disabled:bg-gray-100"
-      >
-        {"<<"}
-      </button>
-      <button
-        onClick={() => previousPage()}
-        disabled={!canPreviousPage}
-        className="px-3 py-1 bg-gray-200 rounded text-gray-600 hover:bg-gray-300 disabled:bg-gray-100"
-      >
-        Previous
-      </button>
-      <button
-        onClick={() => nextPage()}
-        disabled={!canNextPage}
-        className="px-3 py-1 bg-gray-200 rounded text-gray-600 hover:bg-gray-300 disabled:bg-gray-100"
-      >
-        Next
-      </button>
-      <button
-        onClick={() => gotoPage(pageCount - 1)}
-        disabled={!canNextPage}
-        className="px-3 py-1 bg-gray-200 rounded text-gray-600 hover:bg-gray-300 disabled:bg-gray-100"
-      >
-        {">>"}
-      </button>
-      {/* <span>
+            <tbody {...getTableBodyProps()}>
+              {page?.map((row) => {
+                prepareRow(row);
+                return (
+                  <tr
+                    {...row.getRowProps()}
+                    className="border-b border-gray-200 hover:bg-gray-100"
+                  >
+                    {row.cells.map((cell) => (
+                      <td
+                        {...cell.getCellProps()}
+                        className="px-6 py-4 whitespace-nowrap text-gray-700"
+                      >
+                        {cell.render("Cell")}
+                      </td>
+                    ))}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Pagination Controls */}
+        <div className="flex justify-between items-center mt-4">
+          <span>
+            Page{" "}
+            <strong>
+              {pageIndex + 1} of {pageOptions.length}
+            </strong>
+          </span>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => gotoPage(0)}
+              disabled={!canPreviousPage}
+              className="px-3 py-1 bg-gray-200 rounded text-gray-600 hover:bg-gray-300 disabled:bg-gray-100"
+            >
+              {"<<"}
+            </button>
+            <button
+              onClick={() => previousPage()}
+              disabled={!canPreviousPage}
+              className="px-3 py-1 bg-gray-200 rounded text-gray-600 hover:bg-gray-300 disabled:bg-gray-100"
+            >
+              Previous
+            </button>
+            <button
+              onClick={() => nextPage()}
+              disabled={!canNextPage}
+              className="px-3 py-1 bg-gray-200 rounded text-gray-600 hover:bg-gray-300 disabled:bg-gray-100"
+            >
+              Next
+            </button>
+            <button
+              onClick={() => gotoPage(pageCount - 1)}
+              disabled={!canNextPage}
+              className="px-3 py-1 bg-gray-200 rounded text-gray-600 hover:bg-gray-300 disabled:bg-gray-100"
+            >
+              {">>"}
+            </button>
+            {/* <span>
         | Go to page:
         <input
           type="number"
@@ -223,12 +258,11 @@ function VisaTable({ data, columns }) {
           </option>
         ))}
       </select> */}
-    </div>
-  </div>
-</div>
-
+          </div>
+        </div>
+      </div>
     </>
-  )
+  );
 }
 
 export default VisaTable;

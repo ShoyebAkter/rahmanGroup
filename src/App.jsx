@@ -19,7 +19,7 @@ function App() {
 
   const apiUrl = process.env.REACT_APP_API_URL;
   
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     axios.get(`${apiUrl}/auth/authenticatedUser`, {
@@ -52,7 +52,8 @@ function App() {
       <LoginContext.Provider value={{loginInfo, setLoginInfo}}>
         <div className="w-full h-full flex flex-col items-center justify-center bg-dimWhite font-poppins">
             <Routes>
-              <Route path='/' element={<Login />} />
+            <Route path='/' element={<Welcome />} />
+              <Route path='/login' element={<Login />} />
               <Route path='*' element={<Home />}/>
             </Routes>
         </div>

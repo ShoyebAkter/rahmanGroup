@@ -6,7 +6,7 @@ import axios from 'axios'
 import swal from 'sweetalert'
 import VisaTable from './VisaTable'
 
-const VisaTableInit = () => {
+const VisaTableInit = ({pathKey}) => {
   
   const apiUrl = process.env.REACT_APP_API_URL
   const [visas, setVisas] = useState([])
@@ -49,7 +49,7 @@ const VisaTableInit = () => {
     })
   }, [])
     
-
+// console.log(visas)
   return (
     <div className='w-full h-full overflow-auto'>
     
@@ -68,6 +68,7 @@ const VisaTableInit = () => {
         <VisaTable
           columns={columns} 
           data={visas} 
+          pathKey={pathKey}
         />
       }
     </div>
