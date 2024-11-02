@@ -239,9 +239,8 @@ function PaymentTable({ data, columns, allPayments}) {
           width: '100%', // set the width to 80% of the parent container
           height: '80%', // set the height to 80% of the parent container
           maxWidth: '85%', // maximum width
-          maxHeight: '600px', // maximum height
-          margin: 'auto', // center the modal horizontally
-          overflow: 'auto', // make the content scrollable
+          maxHeight: '600px',
+
           backgroundColor: 'white',
           borderWidth: 2,
         }
