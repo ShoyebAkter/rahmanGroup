@@ -55,7 +55,8 @@ const NationalityChart = () => {
         );
     };
   return (
-    <div>
+    <div className="w-[600px] mx-auto pt-10 bg-gray-50 overflow-auto">
+      <h2 className="text-xl font-semibold mb-4 w-full p-2 text-center">Nationality OF Employee</h2>
       <BarChart width={500}
         height={400} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}  data={result}>
         

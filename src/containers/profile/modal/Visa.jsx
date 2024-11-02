@@ -86,63 +86,87 @@ function Visa({ profileInit, setProfileInit, isInfo8Open, setIsInfo8Open , index
 
       <div className={modalClass}>
        
-        <div className="bg-white rounded-lg overflow-hidden md:w-1/4 w-2/3">
-          <div className="p-4">
-            <button className="float-right text-gray-500" onClick={() => setIsInfo8Open(false)}>
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
+      <div className="bg-white rounded-xl shadow-lg overflow-hidden w-1/3 mx-auto">
+  <div className="p-6 my-5 relative">
+    <button
+      className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 focus:outline-none"
+      onClick={() => setIsInfo8Open(false)}
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
 
-            <h2 className='text-lg font-semibold p-2'>Visa Info</h2>
-            <hr />
+    <h2 className="text-2xl font-semibold text-gray-800 text-center mb-6">Visa Info</h2>
+    <hr className="mb-6 border-gray-300" />
 
-            <div className='p-2 flex flex-col'>
-              <label htmlFor="">Identification No.</label>
-              <input type="text" value={formData.viId} className={formClass}
-                onChange={e => setFormData({...formData, viId:e.target.value})} 
-              />
-              <label htmlFor="">Reference No.</label>
-              <input type="text" value={formData.referenceNo} className={formClass}
-                onChange={e => setFormData({...formData, referenceNo:e.target.value})} 
-              />
-              <label htmlFor="">Status</label>
-              <select type="text" 
-                value={formData.status} 
-                required 
-                className={formClass} 
-                onChange={e => setFormData({ ...formData, status: e.target.value })} 
-              >
-                <option value="">Select ...</option>
-                <option value="Submitted">Submitted</option>
-                <option value="In Progress">In Progress</option>
-                <option value="Completed">Completed</option>
-                <option value="Active">Active</option>
-                <option value="Expired">Expired</option>
-              </select>
+    <div className="space-y-5">
+      <div>
+        <label className="block text-sm font-medium text-gray-700">Identification No.</label>
+        <input
+          type="text"
+          value={formData.viId}
+          onChange={(e) => setFormData({ ...formData, viId: e.target.value })}
+          className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
 
-              <label htmlFor="" className='mt-4'>Issue Date</label>
-              <DatePicker
-                selected={formData.issueDate}
-                onChange={date => setFormData({...formData, issueDate: date})}
-                className={formClass}
-              />
+      <div>
+        <label className="block text-sm font-medium text-gray-700">Reference No.</label>
+        <input
+          type="text"
+          value={formData.referenceNo}
+          onChange={(e) => setFormData({ ...formData, referenceNo: e.target.value })}
+          className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
 
-              <label htmlFor="" className='mt-4'>Expiry Date</label>
-              <DatePicker
-                selected={formData.expiryDate}
-                onChange={date => setFormData({...formData, expiryDate: date})}
-                className={formClass}
-              />
+      <div>
+        <label className="block text-sm font-medium text-gray-700">Status</label>
+        <select
+          value={formData.status}
+          onChange={(e) => setFormData({ ...formData, status: e.target.value })}
+          className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          required
+        >
+          <option value="">Select ...</option>
+          <option value="Submitted">Submitted</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Completed">Completed</option>
+          <option value="Active">Active</option>
+          <option value="Expired">Expired</option>
+        </select>
+      </div>
 
-              <button 
-                className='w-full mt-3 border-2 p-2 bg-green-600 text-white rounded-lg'
-                onClick={() => updateProfile()}
-              >{loading ? "Updating ...": "Update"}</button>
+      <div>
+        <label className="block text-sm font-medium text-gray-700">Issue Date</label>
+        <DatePicker
+          selected={formData.issueDate}
+          onChange={(date) => setFormData({ ...formData, issueDate: date })}
+          className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
 
-            </div>
-          </div>
-        </div>
+      <div>
+        <label className="block text-sm font-medium text-gray-700">Expiry Date</label>
+        <DatePicker
+          selected={formData.expiryDate}
+          onChange={(date) => setFormData({ ...formData, expiryDate: date })}
+          className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+
+      <button
+        className="w-full mt-5 py-2 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition duration-150 ease-in-out flex items-center justify-center"
+        onClick={() => updateProfile()}
+        disabled={loading}
+      >
+        {loading ? "Updating ..." : "Update"}
+      </button>
+    </div>
+  </div>
+</div>
+
       </div>
     </div>
   );

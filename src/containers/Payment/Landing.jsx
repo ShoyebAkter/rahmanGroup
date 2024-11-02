@@ -5,8 +5,8 @@ import PaymentTableInit from './tables/PaymentTableInit'
 const Landing = () => {
 
   return (
-    <div className='w-full flex h-full flex-col items-center justify-between relative gap-3'>
-      <div className='self-start'>
+    <div className='w-full bg-gray-50 flex h-full flex-col items-center justify-between relative gap-3'>
+      <div className='self-start ml-10 mt-10'>
         <Link
         to={'/dashboard'}
         className='text-yellow-700'>

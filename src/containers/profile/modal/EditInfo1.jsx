@@ -20,7 +20,7 @@ function EditInfo1({ profileInit, setProfileInit, isOpen, setIsOpen }) {
     DOB: profileInit.DOB,
     nationality: profileInit.nationality,
     mobile: profileInit.mobile,
-    telephone: profileInit.telephone,
+    agent: profileInit.telephone,
     status: profileInit.status,
     email: profileInit.email,
     idNo: profileInit.idNo,
@@ -91,7 +91,7 @@ function EditInfo1({ profileInit, setProfileInit, isOpen, setIsOpen }) {
       <div className={overlayClass} onClick={() => setIsOpen(false)}></div>
 
       <div className={modalClass}>
-        <div className="bg-white rounded-xl shadow-lg overflow-hidden md:w-1/3 w-11/12 mx-auto">
+        <div className="bg-white rounded-xl shadow-lg overflow-hidden  w-1/3 mx-auto">
           <div className="p-6 relative">
             <button
               className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 focus:outline-none"
@@ -198,7 +198,7 @@ function EditInfo1({ profileInit, setProfileInit, isOpen, setIsOpen }) {
               />
 
               <label className="block text-sm font-medium text-gray-700">
-                Telephone
+                Agent Name
               </label>
               <input
                 type="text"

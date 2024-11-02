@@ -75,7 +75,7 @@ const PaymentTableInit = () => {
   return (
     <div className='w-full h-full overflow-auto'>
  
-      <div className='p-2 bg-dimWhite rounded-lg'>
+      <div className='p-2 ml-6 rounded-lg'>
         <label>Filter Year: </label>
         <select className='p-1 bg-gray-100' onChange={handleYearChange}>
           <option value={getCurrentYear}>{getCurrentYear()}</option>
