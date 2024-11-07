@@ -443,7 +443,7 @@ const ProfilePayment = ({ selectedProfile, key }) => {
   };
 
   return (
-    <div className="w-full h-full flex flex-col flex-1">
+    <div className="w-full h-full pb-10 flex flex-col flex-1">
       <div className="flex flex-wrap gap-3 items-center justify-between">
         <div></div>
 

@@ -11,7 +11,7 @@ const ProfileTableInit = ({setActiveTab, setSelectedProfile}) => {
   const apiUrl = process.env.REACT_APP_API_URL
   const [profiles, setProfiles] = useState([])
   const [errorMessage, setErrorMessage] = useState('')
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const { loginInfo } = useContext(LoginContext)
   const navigate = useNavigate()
   const columns = useMemo(() => COLUMNS, [])
@@ -26,10 +26,10 @@ const ProfileTableInit = ({setActiveTab, setSelectedProfile}) => {
   useEffect(() => {
 
     axios.get(`${apiUrl}/employee`, {
-        headers: {
-          loginToken: localStorage.getItem("loginToken")
-        }
-    })
+      headers: {
+        loginToken: localStorage.getItem("loginToken")
+      }
+  })
     .then(res => {
         if(res.data.error){
             setErrorMessage(res.data.error)
@@ -49,7 +49,7 @@ const ProfileTableInit = ({setActiveTab, setSelectedProfile}) => {
         setLoading(false)
     })
   }, [])
-  
+  // console.log(profiles)
   return (
     <div className='w-full h-full overflow-auto'>
       {/* <h1 className='text-center text-xl font-light p-4'>List of Computer Accessories {`(${profiles.length})`}</h1> */}

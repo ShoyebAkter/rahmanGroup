@@ -18,44 +18,44 @@ const FormAdd = ({ initValues, loading }) => {
 
   const editableAgentsFunc = () => {
     setEditableForAgents(!editableForAgents);
-
-    if (editableForAgents) {
-      if (values.agentId.length > 0) {
-        axios
-          .post(
-            `${apiUrl}/agent/addAgent`,
-            {
-              name: values.agentId,
-            },
-            {
-              headers: {
-                loginToken: localStorage.getItem("loginToken"),
-              },
-            }
-          )
-          .then((result) => {
-            swal({
-              icon: "success",
-              title: "Agent has been added",
-              buttons: false,
-              timer: 2000,
-            });
-            setAgents([...agents, result.data]);
-          })
-          .catch((err) => {
-            if (err.response) {
-              console.log(err);
-              swal({
-                title: "Error",
-                icon: "error",
-                text: err.response.data.error,
-              });
-            } else {
-              console.log(err);
-            }
-          });
-      }
-    }
+    
+    // if (editableForAgents) {
+    //   if (values.agentId.length > 0) {
+    //     axios
+    //       .post(
+    //         `${apiUrl}/agent/addAgent`,
+    //         {
+    //           name: values.agentId,
+    //         },
+    //         {
+    //           headers: {
+    //             loginToken: localStorage.getItem("loginToken"),
+    //           },
+    //         }
+    //       )
+    //       .then((result) => {
+    //         swal({
+    //           icon: "success",
+    //           title: "Agent has been added",
+    //           buttons: false,
+    //           timer: 2000,
+    //         });
+    //         setAgents([...agents, result.data]);
+    //       })
+    //       .catch((err) => {
+    //         if (err.response) {
+    //           console.log(err);
+    //           swal({
+    //             title: "Error",
+    //             icon: "error",
+    //             text: err.response.data.error,
+    //           });
+    //         } else {
+    //           console.log(err);
+    //         }
+    //       });
+    //   }
+    // }
   };
 
   useEffect(() => {
@@ -70,7 +70,7 @@ const FormAdd = ({ initValues, loading }) => {
         },
       })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setAgents(res.data);
       })
       .catch((err) => {
@@ -249,6 +249,7 @@ const FormAdd = ({ initValues, loading }) => {
                 <Field
                   name="agentId"
                   placeHolder="Enter agent name"
+                  // onChange={(e)=>setAgents(e.target.value)}
                   className={
                     touched.agentId && errors.agentId
                       ? "w-full  text-red-800 border-2 border-red-500"

@@ -37,12 +37,13 @@ const Login = () => {
 
   const onSubmit = data => {
     setLoading(true)
+    console.log(data)
     axios.post(`${apiUrl}/auth/login`, { ...data , password: data.passwd})
     .then(res => {
       setLoading(false)
   
       localStorage.setItem('loginToken', res.data)
-
+      console.log(res)
       axios.get(`${apiUrl}/auth/authenticatedUser`, {
             headers: {
               loginToken: localStorage.getItem('loginToken')
@@ -83,6 +84,7 @@ const Login = () => {
           title: 'Error !',
           text: JSON.stringify(err.response.data.error),
         })
+        console.log(err)
         setLoading(false)
       })
   }

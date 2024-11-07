@@ -30,9 +30,6 @@ const AddProfile = () => {
     idNo: '',
     agentId: '',
     status: 'Active',
-    emName: '',
-    emMobile: '',
-    bloodGroup: '',
     paNo: '',
     paIssueDate: '',
     paExpDate: '',
@@ -86,39 +83,27 @@ const validationSchema = Yup.object().shape({
 });
 
   //handle data submission when submit button has been clicked
-  const onSubmit = (data, { resetForm }) => {
+  const onSubmit = (data) => {
     //send data to backend together with loan ID
    // data.loanId = loanId
-
-    setLoading(true)
+    console.log(data)
+    // setLoading(true)
 
     axios.post(`${apiUrl}/employee/add`, data, {
       headers: {
         loginToken: localStorage.getItem("loginToken")
       }
     }).then(result => {
-      setLoading(false)
+      // setLoading(false)
       console.log(result)
       if(result.status === 200){
        setIsModalOpen(true)
        setData(result.data.employeeInfo)
-        //resetForm()
-
-        //setActiveTab(1)
+       
       }
     }).catch(err => {
-      if(err.response){
-        swal({
-            title: "Error",
-            icon: "error",
-            text: err.response.data.error
-        })
-      }else{
-        console.log(err)
-      }
+      console.log(err)
        
-  
-      setLoading(false)
     })
   }
 
@@ -126,11 +111,11 @@ const validationSchema = Yup.object().shape({
     <div className="flex flex-col w-full items-center justify-center overflow-auto">
       <Formik
         initialValues={initValues}
-        validationSchema={validationSchema}
+        // validationSchema={validationSchema}
         onSubmit={onSubmit}
       >
         {/* form should be wrappped in formik for easy access to formik context variables */}
-        <FormAdd initValues={initValues} loading={loading}/>
+        <FormAdd initValues={initValues} loading={loading} />
       </Formik>
 
       {
