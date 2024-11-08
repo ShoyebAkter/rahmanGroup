@@ -24,7 +24,7 @@ const ProfileTableInit = ({setActiveTab, setSelectedProfile}) => {
   }, [loginInfo])
 
   useEffect(() => {
-
+    setLoading(true)
     axios.get(`${apiUrl}/employee`, {
       headers: {
         loginToken: localStorage.getItem("loginToken")

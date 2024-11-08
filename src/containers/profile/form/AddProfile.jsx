@@ -39,7 +39,7 @@ const AddProfile = () => {
     viId: '',
     viStatus: 'Submitted',
   });
-
+  
   //const {loanId, setLoanId} = useContext(LoanContext) //handles loan ID
   const [loading, setLoading] = useState(false) //handles loading page
 
@@ -87,17 +87,17 @@ const validationSchema = Yup.object().shape({
     //send data to backend together with loan ID
    // data.loanId = loanId
     console.log(data)
-    // setLoading(true)
+    setLoading(true)
 
     axios.post(`${apiUrl}/employee/add`, data, {
       headers: {
         loginToken: localStorage.getItem("loginToken")
       }
     }).then(result => {
-      // setLoading(false)
-      console.log(result)
+      setLoading(false)
+      // console.log(result)
       if(result.status === 200){
-       setIsModalOpen(true)
+      //  setIsModalOpen(true)
        setData(result.data.employeeInfo)
        
       }

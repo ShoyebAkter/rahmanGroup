@@ -1,8 +1,8 @@
 export const COLUMNS = [
   {
-    Header: "Passport No",
-    Footer: "passport",
-    accessor: "Passports[0].passportNo",
+    Header: "Email",
+    Footer: "",
+    accessor: "email",
   },
   {
     Header: "ID No.",
@@ -26,9 +26,9 @@ export const COLUMNS = [
     accessor: "nationality",
   },
   {
-    Header: "Blood Group",
+    Header: "Mobile",
     Footer: "",
-    accessor: "Health.bloodGroup",
+    accessor: "mobile",
   },
   {
     Header: "Profile Status",
