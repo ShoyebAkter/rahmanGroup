@@ -34,7 +34,7 @@ const Dashboard = () => {
       navigate("/");
     }
   }, [loginInfo]);
-console.log(apiUrl)
+// console.log(apiUrl)
   useEffect(() => {
     axios
       .get(`${apiUrl}/employee/getActiveAndInactive`, {
