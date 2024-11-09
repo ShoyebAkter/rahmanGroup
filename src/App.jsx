@@ -19,7 +19,7 @@ function App() {
 
   const apiUrl = process.env.REACT_APP_API_URL;
   
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     axios.get(`${apiUrl}/auth/authenticatedUser`, {
