@@ -46,7 +46,7 @@ function App() {
       console.log(err.response.data.error)
     })
   }, [])
-  // console.log(loginInfo)
+  console.log(loginInfo)
 
   if(!loading){
     return (
