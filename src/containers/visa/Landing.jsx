@@ -4,7 +4,11 @@ import VisaTableInit from './tables/VisaTableInit'
 
 const Landing = () => {
   const location = useLocation();
-  const pathKey = location.pathname.split("/").pop();
+  let pathKey = location.pathname.split("/").pop();
+  // console.log(pathKey)
+  if(pathKey==="visa_exp"){
+    pathKey="90_days"
+  }
   // console.log(pathKey)
   return (
     <div className='w-full bg-gray-50 flex h-full flex-col items-center justify-between relative gap-3'>
@@ -20,7 +24,7 @@ const Landing = () => {
 
       {/* Render active tab content */}
       <div className='w-full p-2 flex items-center flex-col justify-center overflow-auto h-full gap-3'>
-        <h1 className='text-xl font-semibold'>Visas due to expire within {pathKey!== 'visa_exp' && pathKey}</h1>
+        <h1 className='text-xl font-semibold'>Visas due to expire within {pathKey}</h1>
 
         <VisaTableInit pathKey={pathKey} />
       </div>

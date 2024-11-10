@@ -43,7 +43,7 @@ const ProfileDetails = ({ profile, setSelectedProfile, setActiveTab }) => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dimensions = "w-3/4 min-h-[80%] ";
-
+  console.log(profile)
   // Function to toggle modal
   const handleToggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -263,20 +263,21 @@ const ProfileDetails = ({ profile, setSelectedProfile, setActiveTab }) => {
           )}
 
           <div className="flex flex-wrap md:flex-row flex-col justify-evenly items-center gap-2">
-            <div className="bg-white overflow-hidden shadow rounded-lg border box w-full ">
-              <div className="px-4 py-5 sm:px-6">
+            <div className="bg-white overflow-hidden mb-7 shadow rounded-lg border box w-full ">
+              <div className="px-4 py-5 bg-gray-300  sm:px-6">
                 <div className="flex justify-between items-center">
-                  <h3 className="text-lg leading-6 font-medium text-gray-900">
+                  <h3 className="text-lg leading-6 text-center w-full font-medium text-gray-900">
                     Personal Details
                   </h3>
                   <button
                     onClick={() => setIsOpen(true)}
-                    className="text-sm font-medium text-gray-500"
+                    className="p-2 bg-white shadow-lg rounded-lg text-sm flex items-center justify-center cursor-pointer gap-1"
+                    
                   >
                     Update
                   </button>
                 </div>
-                <p className="mt-1 max-w-2xl text-sm text-gray-500">
+                <p className="mt-1 pr-6 text-sm text-center w-full  text-black">
                   Basic personal details are shown below.
                 </p>
               </div>
@@ -292,6 +293,7 @@ const ProfileDetails = ({ profile, setSelectedProfile, setActiveTab }) => {
                     },
                     { label: "Date of Birth:", value: profileInit.DOB },
                     { label: "Nationality:", value: profileInit.nationality },
+                    { label: "Blood Group:", value: profileInit.Health.bloodGroup },
                     { label: "Email Address:", value: profileInit.email },
                     { label: "Mobile No.:", value: profileInit.mobile },
                     { label: "Agent Name:", value: profileInit.Agent.name },
@@ -327,38 +329,36 @@ const ProfileDetails = ({ profile, setSelectedProfile, setActiveTab }) => {
                 <table className="table-auto min-w-full divide-y divide-gray-200">
                   <thead className="bg-gray-200">
                     <tr>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Detail
-                      </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Information
-                      </th>
+                      {[
+                      { label: "Full Name:", key: "fullName" },
+                      { label: "Mobile No.:", key: "mobile" },
+                    ].map((item, idx) => (
+                      <th  key={idx} className="px-6 py-4 whitespace-nowrap">
+                          {item.label}
+                        </th>
+                    ))}
+                      
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
-                    {[
-                      {
-                        label: "Full Name:",
-                        value: profileInit.EmergencyContacts[0]?.fullName,
-                      },
-                      {
-                        label: "Mobile No.:",
-                        value: profileInit.EmergencyContacts[0]?.mobile,
-                      },
-                      {
-                        label: "Telephone:",
-                        value: profileInit.EmergencyContacts[0]?.telephone,
-                      },
+                  {[
+                      { label: "Full Name:", key: "fullName" },
+                      { label: "Mobile No.:", key: "mobile" },
                     ].map((item, idx) => (
-                      <tr key={idx}>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          {item.label}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          {item.value}
-                        </td>
-                      </tr>
+                      <td key={idx}>
+                      {profileInit.EmergencyContacts.map(
+                          (contact, contactIdx) => (
+                            <td
+                              key={contactIdx}
+                              className="px-6 flex justify-center py-4 whitespace-nowrap"
+                            >
+                              {contact[item.key]}
+                            </td>
+                          )
+                        )}
+                      </td>
                     ))}
+                      
                   </tbody>
                 </table>
               </div>
@@ -411,7 +411,7 @@ const ProfileDetails = ({ profile, setSelectedProfile, setActiveTab }) => {
                             onClick={() => handlePassportEdit(index)}
                           >
                             <AiFillEdit size={18} />
-                            Edit
+                            Update
                           </button>
                           {/*<button 
                           onClick={() => deletePassport(passport.id)}
@@ -485,7 +485,7 @@ const ProfileDetails = ({ profile, setSelectedProfile, setActiveTab }) => {
                           className="p-2 bg-blue-400 shadow-xl rounded-lg text-xs flex items-center justify-center cursor-pointer gap-1"
                         >
                           <AiFillEdit size={18} />
-                          Edit
+                          Update
                         </button>
                         {/*<button 
                           onClick={() => deleteVisa(visa.id)}

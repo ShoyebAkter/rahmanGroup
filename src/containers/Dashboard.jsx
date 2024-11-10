@@ -176,19 +176,20 @@ const Dashboard = () => {
 
       <div className="flex flex-col justify-evenly w-full gap-3">
         <div className="flex justify-around">
-          <Card title={"Active profiles"}>
+          <Card title={"Active profiles"} link={"profile"}>
             <StatisticCard
               name={<FaUserCheck fontSize={36} />}
               value={!loading && activeXInactive.active.length}
+              
             />
           </Card>
-          <Card title={"Expired Passports"}>
+          <Card title={"Expired Passports"} link={"passport_exp"}>
             <StatisticCard
               name={<FaPassport fontSize={36} />}
               value={!loading && expiredPassports}
             />
           </Card>
-          <Card title={"Expired Visas"}>
+          <Card title={"Expired Visas"} link={"visa_exp"}>
             <StatisticCard
               name={<IoDocumentLockSharp fontSize={36} />}
               value={!loading && expiredVisas}
@@ -196,19 +197,19 @@ const Dashboard = () => {
           </Card>
         </div>
         <div className="flex justify-around">
-          <Card title={"Inactive profiles"}>
+          <Card title={"Inactive profiles"} link={"profile"}>
             <StatisticCard
               name={<FaUserAltSlash fontSize={36} />}
               value={!loading && activeXInactive.inActive.length}
             />
           </Card>
-          <Card title={"Passports Due"}>
+          <Card title={"Passports Due"} link={"passport_exp"}>
             <StatisticCard
               name={<FaPassport fontSize={36} />}
               value={!loading && passportsDue}
             />
           </Card>
-          <Card title={"Visas Due"}>
+          <Card title={"Visas Due"} link={"visa_exp"}>
             <StatisticCard
               name={<FaRegIdCard fontSize={36} />}
               value={!loading && visasDue}
@@ -216,7 +217,7 @@ const Dashboard = () => {
           </Card>
         </div>
 
-        <div className="flex justify-around items-center gap-5 mt-8">
+        <div className="flex justify-around items-center gap-5 mt-8 mx-20">
           <ChartDiagram agents={agents} />
 
           <GroupedPayments />

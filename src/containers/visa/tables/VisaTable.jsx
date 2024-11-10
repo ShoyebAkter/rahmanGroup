@@ -69,7 +69,7 @@ function VisaTable({ data, columns, pathKey }) {
   const handleDetails = (profile) => {};
   // console.log(data,pathKey)
   useEffect(() => {
-    setPageSize(5);
+    setPageSize(7);
   }, []);
 
   return (

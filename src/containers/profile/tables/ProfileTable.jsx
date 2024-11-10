@@ -79,7 +79,7 @@ function ProfileTable({ data, columns, setActiveTab, setSelectedProfile }) {
   };
 
   useEffect(() => {
-    setPageSize(5);
+    setPageSize(7);
   }, []);
 
   return (

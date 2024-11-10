@@ -30,6 +30,9 @@ const AddProfile = () => {
     idNo: '',
     agentId: '',
     status: 'Active',
+    emName:'',
+    emMobile:'',
+    bloodGroup:'',
     paNo: '',
     paIssueDate: '',
     paExpDate: '',
@@ -86,7 +89,7 @@ const validationSchema = Yup.object().shape({
   const onSubmit = (data) => {
     //send data to backend together with loan ID
    // data.loanId = loanId
-    console.log(data)
+    // console.log(data)
     setLoading(true)
 
     axios.post(`${apiUrl}/employee/add`, data, {
@@ -95,7 +98,7 @@ const validationSchema = Yup.object().shape({
       }
     }).then(result => {
       setLoading(false)
-      // console.log(result)
+      console.log(result)
       if(result.status === 200){
       //  setIsModalOpen(true)
        setData(result.data.employeeInfo)

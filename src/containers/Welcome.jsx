@@ -12,7 +12,7 @@ const Welcome = () => {
     <div className='w-full h-full flex'>
       <img src={landingImg} alt="landing Img" className='w-full h-[100vh]' />
       
-      <div className='absolute  h-full w-full flex flex-row justify-end bg-black bg-opacity-40'>
+      <div className='absolute  h-full w-full flex flex-row justify-center bg-black bg-opacity-40'>
         <div className='md:text-[18pt] text-[16pt] my-[15px] mx-6'>
           {
             !loginInfo.login ? 

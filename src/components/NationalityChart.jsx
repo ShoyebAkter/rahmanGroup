@@ -55,7 +55,7 @@ const NationalityChart = () => {
         );
     };
   return (
-    <div className="w-[600px] mx-auto pt-10 bg-gray-50 overflow-auto">
+    <div className="w-[600px] mx-auto pt-10 bg-white overflow-auto">
       <h2 className="text-xl font-semibold mb-4 w-full p-2 text-center">Nationality OF Employee</h2>
       <BarChart width={500}
         height={400} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}  data={result}>
@@ -65,7 +65,7 @@ const NationalityChart = () => {
         <Tooltip />
         <Legend />
           <Bar dataKey="value"  
-           label={{ position: 'middle' }}
+           label={{ position: 'middle', fill: '#FFFFFF' }}
            shape={<CustomBar />}
             >
              {result.map((entry, index) => (

@@ -293,10 +293,8 @@ const FormAdd = ({ initValues, loading }) => {
         </div>
 
         {/* Additional fields */}
-        {/* <div className="w-full flex flex-wrap gap-y-2 mt-4">
-          <div className="w-full p-3 bg-slate-400 md:mr-[120px] rounded-md">
-            <h1 className="text-xl">Emergency & Health Info</h1>
-          </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+          
           <div className="gap-1 flex flex-col items-start p-2 w-[400px]">
             <label htmlFor="emName" className={labelStyle}>
               Emergency Contact Name:
@@ -308,9 +306,9 @@ const FormAdd = ({ initValues, loading }) => {
               type="text"
               name="emName"
               className={
-                touched.emName && errors.emName
+                touched.mobile && errors.mobile
                   ? "w-full p-3 px-5 text-red-800 border-2 border-red-500"
-                  : "w-full p-3  px-5 text-black border-2 border-black"
+                  : "mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
               }
             />
           </div>
@@ -326,9 +324,9 @@ const FormAdd = ({ initValues, loading }) => {
               type="tel"
               name="emMobile"
               className={
-                touched.emMobile && errors.emMobile
+                touched.mobile && errors.mobile
                   ? "w-full p-3 px-5 text-red-800 border-2 border-red-500"
-                  : "w-full p-3  px-5 text-black border-2 border-black"
+                  : "mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
               }
             />
           </div>
@@ -344,9 +342,9 @@ const FormAdd = ({ initValues, loading }) => {
               name="bloodGroup"
               as="select" // Render as select element
               className={
-                touched.bloodGroup && errors.bloodGroup
+                touched.mobile && errors.mobile
                   ? "w-full p-3 px-5 text-red-800 border-2 border-red-500"
-                  : "w-full p-3 px-5 text-black border-2 border-black"
+                  : "mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
               }
             >
               <option value="">Select Blood Group</option>
@@ -360,7 +358,7 @@ const FormAdd = ({ initValues, loading }) => {
               <option value="O-">O-</option>
             </Field>
           </div>
-        </div> */}
+        </div>
 
         {/* <div className="w-full flex flex-wrap gap-10 gap-y-2 mt-4">
           
@@ -427,28 +425,7 @@ const FormAdd = ({ initValues, loading }) => {
               dateFormat="dd/MM/yyyy"
             />
           </div>
-          <div className="gap-1 flex flex-col items-start p-2 w-[400px]">
-            <label htmlFor="paCopy" className={labelStyle}>
-              Passport Copy :
-            </label>
-            <div className="flex w-full animate-pulse flex-row items-end text-red-900 font-medium justify-end px-2">
-              <ErrorMessage name="paCopy" />
-            </div>
-            <input type="file"
-            className="mt-2 p-4 w-full border-2 rounded-lg"/>
-            
-          </div>
-          <div className="gap-1 flex flex-col items-start p-2 w-[400px]">
-            <label htmlFor="visaCopy" className={labelStyle}>
-              Visa Copy :
-            </label>
-            <div className="flex w-full animate-pulse flex-row items-end text-red-900 font-medium justify-end px-2">
-              <ErrorMessage name="visaCopy" />
-            </div>
-            <input type="file"
-            className="mt-2 p-4 w-full border-2 rounded-lg"/>
-            
-          </div>
+          
           <div className="gap-1 flex flex-col items-start p-2 w-[400px]">
             <label htmlFor="viRefNo" className={labelStyle}>
               Visa Identification * :
