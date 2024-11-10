@@ -40,6 +40,7 @@ const SideNavbar = () => {
     { key: "30_days", name: "30 Days", icon: <BiLogoVisa fontSize={18} /> },
     { key: "60_days", name: "60 Days", icon: <BiLogoVisa fontSize={18} /> },
     { key: "90_days", name: "90 Days", icon: <BiLogoVisa fontSize={18} /> },
+    { key: "expired", name: "Expired Visa", icon: <BiLogoVisa fontSize={18} /> },
     {
       key: "passport_exp",
       name: "Passport Expire",
@@ -48,6 +49,7 @@ const SideNavbar = () => {
     { key: "1_month", name: "1 Month", icon: <BiBook fontSize={18} /> },
     { key: "3_month", name: "3 Month", icon: <BiBook fontSize={18} /> },
     { key: "6_month", name: "6 Month", icon: <BiBook fontSize={18} /> },
+    { key: "pass_expired", name: "Pass Expired", icon: <BiBook fontSize={18} /> },
     { key: "agents", name: "Agents", icon: <BiBuildingHouse fontSize={18} /> },
     { key: "payments", name: "Payments", icon: <BiDollar fontSize={18} /> },
 
@@ -58,10 +60,10 @@ const SideNavbar = () => {
     },
   ];
   const handleVisaClick = (key, name) => {
-    if (key === "visa_exp" || key === "30_days" || key === "60_days" || key === "90_days") {
+    if (key === "visa_exp" || key === "30_days" || key === "60_days" || key === "90_days" || key === "expired") {
       setShowDaysLinks(true);
       setShowMonthsLinks(false);
-    } else if (key === "passport_exp" || key === "1_month" || key === "3_month" || key === "6_month") {
+    } else if (key === "passport_exp" || key === "1_month" || key === "3_month" || key === "6_month" || key==="pass_expired") {
       setShowDaysLinks(false);
       setShowMonthsLinks(true);
     } else {
@@ -121,8 +123,8 @@ const SideNavbar = () => {
       <div className="mt-10 flex flex-col gap-y-3 overflow-y-auto">
       {devices.map((value, index) => {
   // Check if the item is a "days" or "months" link
-  const isDaysLink = value.key === "30_days" || value.key === "60_days" || value.key === "90_days";
-  const isMonthsLink = value.key === "1_month" || value.key === "3_month" || value.key === "6_month";
+  const isDaysLink = value.key === "30_days" || value.key === "60_days" || value.key === "90_days" || value.key === "expired" ;
+  const isMonthsLink = value.key === "1_month" || value.key === "3_month" || value.key === "6_month" || value.key==="pass_expired";
 
   // Show only the relevant links based on state
   if ((showDaysLinks && isDaysLink) || (showMonthsLinks && isMonthsLink)) {

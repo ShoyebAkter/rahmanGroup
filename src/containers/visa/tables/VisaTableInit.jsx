@@ -23,30 +23,30 @@ const VisaTableInit = ({pathKey}) => {
   }, [loginInfo])
 
   useEffect(() => {
-
     axios.get(`${apiUrl}/employee/visaExpire`, {
-        headers: {
-          loginToken: localStorage.getItem("loginToken")
-        }
-    })
-    .then(res => {
-        if(res.data.error){
-            setErrorMessage(res.data.error)
-        }else{
-            setVisas(res.data.visas)
-        }
+      headers: {
+        loginToken: localStorage.getItem("loginToken")
+      }
+  })
+  .then(res => {
+      if(res.data.error){
+          setErrorMessage(res.data.error)
+      }else{
+          setVisas(res.data.visas)
+      }
 
-        setLoading(false)
-    })
-    .catch(err => {
+      setLoading(false)
+  })
+  .catch(err => {
 
-        swal({
-            title: "Error",
-            icon: "error",
-            text: JSON.stringify(err.message)
-        })
-        setLoading(false)
-    })
+      swal({
+          title: "Error",
+          icon: "error",
+          text: JSON.stringify(err.message)
+      })
+      setLoading(false)
+  })
+    
   }, [])
     
 // console.log(visas)

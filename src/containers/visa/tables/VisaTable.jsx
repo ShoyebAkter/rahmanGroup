@@ -8,17 +8,33 @@ import {
 } from "react-table";
 import ColumnFilter from "./ColumnFilter";
 import GlobalFilter from "./GlobalFilter";
+import axios from "axios";
 
 function VisaTable({ data, columns, pathKey }) {
+  const apiUrl = process.env.REACT_APP_API_URL
   const [filterData,setFilterData]=useState([])
-  // console.log(pathKey)
+  console.log(pathKey,data)
   const defaultColumn = useMemo(() => {
     return {
       Filter: ColumnFilter,
     };
   }, []);
   useEffect(()=>{
-    const expireDate =
+    if(pathKey==="expired"){
+      axios
+      .get(`${apiUrl}/employee/visaExpired`, {
+        headers: {
+          loginToken: localStorage.getItem("loginToken"),
+        },
+      })
+      .then((res) => {
+        setFilterData(res.data.visas)
+      })
+      .catch((err) => {
+        console.log(err)
+      });
+    }else{
+      const expireDate =
     pathKey === "30_days"
       ? 30
       : pathKey === "60_days"
@@ -38,8 +54,9 @@ function VisaTable({ data, columns, pathKey }) {
     }
   });
   setFilterData(expiringSoon)
+    }
   },[pathKey,data])
-  // console.log(filterData);
+  console.log(filterData);
   const {
     getTableProps,
     getTableBodyProps,

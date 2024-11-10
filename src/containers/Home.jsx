@@ -70,10 +70,12 @@ const Landing = () => {
             <Route path='/1_month' element={<PassportLanding/>} />
             <Route path='/3_month' element={<PassportLanding/>} />
             <Route path='/6_month' element={<PassportLanding/>} />
+            <Route path='/pass_expired' element={<PassportLanding/>} />
             <Route path='/visa_exp' element={<VisaLanding/>} />
             <Route path='/30_days' element={<VisaLanding/>} />
             <Route path='/60_days' element={<VisaLanding/>} />
             <Route path='/90_days' element={<VisaLanding/>} />
+            <Route path='/expired' element={<VisaLanding/>} />
             <Route path='/agents' element={<AgentLanding/>} />
             <Route path='/add_profile' element={<ProfileAdd/>} />
             <Route path='/agentProfile' element={<AgentProfile/>} />

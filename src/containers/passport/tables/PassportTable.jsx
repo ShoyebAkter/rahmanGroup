@@ -1,40 +1,63 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { useTable, useSortBy, useFilters, useGlobalFilter, usePagination } from 'react-table';
-import ColumnFilter from './ColumnFilter';
-import GlobalFilter from './GlobalFilter';
-import { useLocation } from 'react-router-dom';
+import React, { useEffect, useMemo, useState } from "react";
+import {
+  useTable,
+  useSortBy,
+  useFilters,
+  useGlobalFilter,
+  usePagination,
+} from "react-table";
+import ColumnFilter from "./ColumnFilter";
+import GlobalFilter from "./GlobalFilter";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
 
 function PassportTable({ data, columns }) {
-  const [filterData,setFilterData]=useState([])
+  const apiUrl = process.env.REACT_APP_API_URL
+  const [filterData, setFilterData] = useState([]);
   const location = useLocation();
   const pathKey = location.pathname.split("/").pop();
   const defaultColumn = useMemo(() => {
     return {
-      Filter: ColumnFilter
-    }
-  }, [])
-  useEffect(()=>{
-    const expireDate =
-    pathKey === "1_month"
-      ? 30
-      : pathKey === "3_month"
-      ? 90
-      : pathKey === "6_month"
-      ? 180
-      : null;
-   const expiringSoon = data.filter((item) => {
-    if (expireDate === 30) {
-      return item.daysUntilExpiry <= 30;
-    } else if (expireDate === 90) {
-      return item.daysUntilExpiry > 30 && item.daysUntilExpiry <= 90;
-    } else if (expireDate === 180) {
-      return item.daysUntilExpiry > 90 && item.daysUntilExpiry <= 180;
+      Filter: ColumnFilter,
+    };
+  }, []);
+  useEffect(() => {
+    if (pathKey === "pass_expired") {
+      axios
+        .get(`${apiUrl}/employee/passportExpired`, {
+          headers: {
+            loginToken: localStorage.getItem("loginToken"),
+          },
+        })
+        .then((res) => {
+          setFilterData(res.data.passports);
+        })
+        .catch((err) => {
+          console.log(err)
+        });
     } else {
-      return false; // No items if expireDate is not 30, 60, or 90
+      const expireDate =
+        pathKey === "1_month"
+          ? 30
+          : pathKey === "3_month"
+          ? 90
+          : pathKey === "6_month"
+          ? 180
+          : null;
+      const expiringSoon = data.filter((item) => {
+        if (expireDate === 30) {
+          return item.daysUntilExpiry <= 30;
+        } else if (expireDate === 90) {
+          return item.daysUntilExpiry > 30 && item.daysUntilExpiry <= 90;
+        } else if (expireDate === 180) {
+          return item.daysUntilExpiry > 90 && item.daysUntilExpiry <= 180;
+        } else {
+          return false; // No items if expireDate is not 30, 60, or 90
+        }
+      });
+      setFilterData(expiringSoon);
     }
-  });
-  setFilterData(expiringSoon)
-  },[pathKey,data])
+  }, [pathKey, data]);
   const {
     getTableProps,
     getTableBodyProps,
@@ -49,22 +72,25 @@ function PassportTable({ data, columns }) {
     pageCount,
     setPageSize,
     prepareRow,
-    state,  
-    setGlobalFilter, 
-  } = useTable({ columns, data: filterData || [], defaultColumn} , useFilters, useGlobalFilter, useSortBy, usePagination)
+    state,
+    setGlobalFilter,
+  } = useTable(
+    { columns, data: filterData || [], defaultColumn },
+    useFilters,
+    useGlobalFilter,
+    useSortBy,
+    usePagination
+  );
 
-  const { globalFilter, pageIndex, pageSize } = state
+  const { globalFilter, pageIndex, pageSize } = state;
 
-  const handleDetails = profile => {
-
-  } 
+  const handleDetails = (profile) => {};
 
   useEffect(() => {
-    setPageSize(5)
-  }, [])
+    setPageSize(5);
+  }, []);
 
   return (
-
     <>
       {/* On mobile */}
       {/* <div className='w-full md:hidden flex flex-col justify-center overflow-auto'> 
@@ -110,102 +136,105 @@ function PassportTable({ data, columns }) {
 
       {/* On desktop */}
       <div className="w-full flex flex-col justify-center overflow-auto h-full bg-white shadow-lg rounded-lg p-4">
-  {/* Filter Input */}
-  <div className="mb-4">
-    <GlobalFilter
-      filter={globalFilter}
-      setFilter={setGlobalFilter}
-      placeholderText="Search Profiles"
-      className="w-full pl-10 pr-4 py-2 border rounded-lg shadow focus:outline-none text-gray-600"
-    />
-  </div>
+        {/* Filter Input */}
+        <div className="mb-4">
+          <GlobalFilter
+            filter={globalFilter}
+            setFilter={setGlobalFilter}
+            placeholderText="Search Profiles"
+            className="w-full pl-10 pr-4 py-2 border rounded-lg shadow focus:outline-none text-gray-600"
+          />
+        </div>
 
-  {/* Table */}
-  <div className="overflow-x-auto">
-    <table
-      {...getTableProps()}
-      className="min-w-full bg-white table-auto text-left font-light"
-    >
-      <thead>
-        {headerGroups.map(headerGroup => (
-          <tr
-            {...headerGroup.getHeaderGroupProps()}
-            className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal"
+        {/* Table */}
+        <div className="overflow-x-auto">
+          <table
+            {...getTableProps()}
+            className="min-w-full bg-white table-auto text-left font-light"
           >
-            {headerGroup.headers.map(col => (
-              <th
-                {...col.getHeaderProps(col.getSortByToggleProps())}
-                className="px-6 py-4 border-b border-gray-200 font-semibold text-left"
-              >
-                {col.render("Header")}
-                <span>
-                  {col.isSorted ? (col.isSortedDesc ? " ▼" : " ▲") : ""}
-                </span>
-                {/* <div>{col.canFilter ? col.render("Filter") : null}</div> */}
-              </th>
-            ))}
-          </tr>
-        ))}
-      </thead>
-
-      <tbody {...getTableBodyProps()}>
-        {page.map(row => {
-          prepareRow(row);
-          return (
-            <tr
-              {...row.getRowProps()}
-              className="border-b transition duration-300 ease-in-out hover:bg-gray-100"
-            >
-              {row.cells.map(cell => (
-                <td
-                  {...cell.getCellProps()}
-                  className="whitespace-nowrap px-6 py-4 text-gray-700"
+            <thead>
+              {headerGroups.map((headerGroup) => (
+                <tr
+                  {...headerGroup.getHeaderGroupProps()}
+                  className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal"
                 >
-                  {cell.render("Cell")}
-                </td>
+                  {headerGroup.headers.map((col) => (
+                    <th
+                      {...col.getHeaderProps(col.getSortByToggleProps())}
+                      className="px-6 py-4 border-b border-gray-200 font-semibold text-left"
+                    >
+                      {col.render("Header")}
+                      <span>
+                        {col.isSorted ? (col.isSortedDesc ? " ▼" : " ▲") : ""}
+                      </span>
+                      {/* <div>{col.canFilter ? col.render("Filter") : null}</div> */}
+                    </th>
+                  ))}
+                </tr>
               ))}
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
-  </div>
+            </thead>
 
-  {/* Pagination Controls */}
-  <div className="flex justify-between items-center mt-4">
-    <span>
-      Page <strong>{pageIndex + 1} of {pageOptions.length}</strong>
-    </span>
-    <div className="flex items-center gap-2">
-      <button
-        onClick={() => gotoPage(0)}
-        disabled={!canPreviousPage}
-        className="px-3 py-1 bg-gray-200 rounded text-gray-600 hover:bg-gray-300 disabled:bg-gray-100"
-      >
-        {"<<"}
-      </button>
-      <button
-        onClick={() => previousPage()}
-        disabled={!canPreviousPage}
-        className="px-3 py-1 bg-gray-200 rounded text-gray-600 hover:bg-gray-300 disabled:bg-gray-100"
-      >
-        Previous
-      </button>
-      <button
-        onClick={() => nextPage()}
-        disabled={!canNextPage}
-        className="px-3 py-1 bg-gray-200 rounded text-gray-600 hover:bg-gray-300 disabled:bg-gray-100"
-      >
-        Next
-      </button>
-      <button
-        onClick={() => gotoPage(pageCount - 1)}
-        disabled={!canNextPage}
-        className="px-3 py-1 bg-gray-200 rounded text-gray-600 hover:bg-gray-300 disabled:bg-gray-100"
-      >
-        {">>"}
-      </button>
-      {/* <span>
+            <tbody {...getTableBodyProps()}>
+              {page.map((row) => {
+                prepareRow(row);
+                return (
+                  <tr
+                    {...row.getRowProps()}
+                    className="border-b transition duration-300 ease-in-out hover:bg-gray-100"
+                  >
+                    {row.cells.map((cell) => (
+                      <td
+                        {...cell.getCellProps()}
+                        className="whitespace-nowrap px-6 py-4 text-gray-700"
+                      >
+                        {cell.render("Cell")}
+                      </td>
+                    ))}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Pagination Controls */}
+        <div className="flex justify-between items-center mt-4">
+          <span>
+            Page{" "}
+            <strong>
+              {pageIndex + 1} of {pageOptions.length}
+            </strong>
+          </span>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => gotoPage(0)}
+              disabled={!canPreviousPage}
+              className="px-3 py-1 bg-gray-200 rounded text-gray-600 hover:bg-gray-300 disabled:bg-gray-100"
+            >
+              {"<<"}
+            </button>
+            <button
+              onClick={() => previousPage()}
+              disabled={!canPreviousPage}
+              className="px-3 py-1 bg-gray-200 rounded text-gray-600 hover:bg-gray-300 disabled:bg-gray-100"
+            >
+              Previous
+            </button>
+            <button
+              onClick={() => nextPage()}
+              disabled={!canNextPage}
+              className="px-3 py-1 bg-gray-200 rounded text-gray-600 hover:bg-gray-300 disabled:bg-gray-100"
+            >
+              Next
+            </button>
+            <button
+              onClick={() => gotoPage(pageCount - 1)}
+              disabled={!canNextPage}
+              className="px-3 py-1 bg-gray-200 rounded text-gray-600 hover:bg-gray-300 disabled:bg-gray-100"
+            >
+              {">>"}
+            </button>
+            {/* <span>
         | Go to page:
         <input
           type="number"
@@ -228,12 +257,11 @@ function PassportTable({ data, columns }) {
           </option>
         ))}
       </select> */}
-    </div>
-  </div>
-</div>
-
+          </div>
+        </div>
+      </div>
     </>
-  )
+  );
 }
 
 export default PassportTable;

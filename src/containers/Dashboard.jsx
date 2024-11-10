@@ -94,6 +94,7 @@ const Dashboard = () => {
       .then((res) => {
         setExpiredPassports(res.data?.passports?.length);
         setLoading(false);
+        console.log(res.data)
       })
       .catch((err) => {
         swal({
@@ -167,7 +168,7 @@ const Dashboard = () => {
         setLoading(false);
       });
   }, []);
-
+  // console.log(expiredPassports,expiredVisas)
   return (
     <div className="w-full bg-gray-50 h-full rounded-lg  gap-3 p-5 flex items-start flex-col shadow-md">
       <h1 className="text-[18pt] font-light ml-10">
