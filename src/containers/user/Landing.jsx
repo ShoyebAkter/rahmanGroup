@@ -38,7 +38,7 @@ const Landing = () => {
   useEffect(() => {
     !loginInfo.login && navigate("/");
   }, [loginInfo]);
-
+  console.log(loginInfo.userDetails.role)
   // Handle tab change
   const handleTabChange = (index) => {
     setActiveTab(index);
@@ -55,7 +55,9 @@ const Landing = () => {
           {" > "}
           Users
         </div>
-        <div className="mr-10">
+        {
+          loginInfo.userDetails.role ==="admin" &&
+          <div className="mr-10">
           {tabContent.map((tab, index) => (
             <>
               {(index === 0 && !showSecondTab) ||
@@ -75,6 +77,8 @@ const Landing = () => {
             </>
           ))}
         </div>
+        }
+        
       </div>
 
       {/* Render active tab content */}

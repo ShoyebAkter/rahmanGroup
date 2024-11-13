@@ -29,7 +29,7 @@ const UserTableInit = ({ setActiveTab, setSelected }) => {
         .toLowerCase()
         .includes(searchTerm.toLowerCase())
   );
-
+    console.log(filteredData)
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
   };
@@ -71,6 +71,9 @@ const UserTableInit = ({ setActiveTab, setSelected }) => {
                     Mobile
                   </th>
                   <th className="px-6 py-3 border-b border-gray-200 font-semibold text-left">
+                    Role
+                  </th>
+                  <th className="px-6 py-3 border-b border-gray-200 font-semibold text-left">
                     Action
                   </th>
                 </tr>
@@ -89,6 +92,9 @@ const UserTableInit = ({ setActiveTab, setSelected }) => {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-gray-700">
                       {item.mobile}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-gray-700">
+                      {item.LoginDetail.UserRole.roleName}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-gray-700">
                       <button

@@ -50,7 +50,7 @@ const PaymentTableInit = () => {
         setLoading(false)
     })
   }, [])
-
+console.log(payments)
   const handleYearChange = (event) => {
     const selectedYearValue = event.target.value;
     setRefresh(new Date())

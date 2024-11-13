@@ -25,7 +25,7 @@ export const COLUMNS = [
     accessor: row => parseFloat(row.totalPayments).toLocaleString(),
   },
   {
-    Header: "Outstanding Balance",
+    Header: "Due Balance",
     Footer: "",
     accessor: row => parseFloat(row.balance).toLocaleString(),
   },

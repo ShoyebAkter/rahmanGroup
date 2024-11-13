@@ -30,7 +30,7 @@ export const COLUMNS = [
   },
   {
     disableFilters: true,
-    Header: "Balance",
+    Header: "Due Payment",
     Footer: "",
     accessor: row => parseFloat(row.balance.balance).toLocaleString(),
   },

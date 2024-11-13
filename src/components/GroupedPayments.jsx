@@ -48,7 +48,7 @@ const GroupedPayments = () => {
   if (error) {
     return <div>Error: {error}</div>;
   }
-
+console.log(payments)
   const getPieData = (payments) => {
     return Object.keys(payments).map((year) => ({
       name: year,

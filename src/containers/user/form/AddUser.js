@@ -48,7 +48,7 @@ const AddUser = () => {
       alert("Password must be at least 6 characters long.");
       return;
     }
-
+    console.log(editedUser)
     // If all fields are filled and password is valid, proceed with saving
     axios
       .post(`${apiUrl}/user/addUser`, editedUser)
