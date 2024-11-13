@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import {
   AiFillCaretDown,
   AiFillHome,
@@ -27,7 +27,8 @@ const SideNavbar = () => {
   const { setToggleMenu } = useContext(SideNavContext);
   const [toggleAdminTasks, setToggleAdminTasks] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-
+  const location = useLocation();
+  let pathKey = location.pathname.split("/").pop();
   const toggleAdminItems = () => setToggleAdminTasks((prev) => !prev);
 
   const devices = [
@@ -81,7 +82,16 @@ const SideNavbar = () => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768); // Adjust the threshold as needed
     };
-
+    if (pathKey === "visa_exp" || pathKey === "30_days" || pathKey === "60_days" || pathKey === "90_days" || pathKey === "expired") {
+      setShowDaysLinks(true);
+      setShowMonthsLinks(false);
+    } else if (pathKey === "passport_exp" || pathKey === "1_month" || pathKey === "3_month" || pathKey === "6_month" || pathKey==="pass_expired") {
+      setShowDaysLinks(false);
+      setShowMonthsLinks(true);
+    } else {
+      setShowDaysLinks(false);
+      setShowMonthsLinks(false);
+    }
     // Initial check on component mount
     handleResize();
 
@@ -92,7 +102,7 @@ const SideNavbar = () => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [pathKey]);
 
   return (
     <div

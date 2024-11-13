@@ -12,6 +12,7 @@ import { FaPassport } from "react-icons/fa";
 import { IoDocumentLockSharp } from "react-icons/io5";
 import { FaRegIdCard } from "react-icons/fa";
 import NationalityChart from "../components/NationalityChart";
+import PaymentChart from "../components/PaymentChart";
 
 const Dashboard = () => {
   const apiUrl = process.env.REACT_APP_API_URL;
@@ -184,13 +185,13 @@ const Dashboard = () => {
               
             />
           </Card>
-          <Card title={"Expired Passports"} link={"passport_exp"}>
+          <Card title={"Expired Passports"} link={"pass_expired"}>
             <StatisticCard
               name={<FaPassport fontSize={36} />}
               value={!loading && expiredPassports}
             />
           </Card>
-          <Card title={"Expired Visas"} link={"visa_exp"}>
+          <Card title={"Expired Visas"} link={"expired"}>
             <StatisticCard
               name={<IoDocumentLockSharp fontSize={36} />}
               value={!loading && expiredVisas}
@@ -204,13 +205,13 @@ const Dashboard = () => {
               value={!loading && activeXInactive.inActive.length}
             />
           </Card>
-          <Card title={"Passports Due"} link={"passport_exp"}>
+          <Card title={"Passports Due"} link={"6_month"}>
             <StatisticCard
               name={<FaPassport fontSize={36} />}
               value={!loading && passportsDue}
             />
           </Card>
-          <Card title={"Visas Due"} link={"visa_exp"}>
+          <Card title={"Visas Due"} link={"90_days"}>
             <StatisticCard
               name={<FaRegIdCard fontSize={36} />}
               value={!loading && visasDue}
@@ -223,8 +224,9 @@ const Dashboard = () => {
 
           <GroupedPayments />
         </div>
-        <div>
+        <div className="flex justify-around items-center gap-5 mt-8 mx-20">
           <NationalityChart/>
+          <PaymentChart/>
         </div>
       </div>
     </div>
