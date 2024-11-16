@@ -6,6 +6,7 @@ import FormAdd from "./FormAdd"
 import swal from "sweetalert"
 import Modal from "../../../components/Modal"
 import UploadDocument from "../../../components/UploadDocument"
+import { useNavigate } from "react-router-dom"
 
 
 const AddProfile = () => {
@@ -13,7 +14,7 @@ const AddProfile = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [data, setData] = useState({})
   const dimensions = 'w-3/4 min-h-[80%] '
-
+  const navigate=useNavigate()
   // Function to toggle modal
   const handleToggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -102,7 +103,7 @@ const validationSchema = Yup.object().shape({
       if(result.status === 200){
       //  setIsModalOpen(true)
        setData(result.data.employeeInfo)
-       
+       navigate('/dashboard')
       }
     }).catch(err => {
       console.log(err)
