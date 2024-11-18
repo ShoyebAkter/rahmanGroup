@@ -34,7 +34,7 @@ const ChartDiagram = ({ agents }) => {
     );
 };
   return (
-    <div className='w-full overflow-auto pt-10 container bg-white mx-auto flex gap-3 flex-col'>
+    <div className='w-full shadow-xl overflow-auto pt-10 container bg-white mx-auto flex gap-3 flex-col'>
       <h2 className='w-full text-xl p-2 text-center font-semibold'>Agents with their Profiles/Employees</h2>
       <BarChart
         width={500}

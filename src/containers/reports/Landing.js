@@ -21,7 +21,7 @@ const Landing = () => {
 
   useEffect(() => {
 
-    !loginInfo.login && navigate("/")
+    !loginInfo.login && navigate("/reports")
     
   }, [loginInfo])
   
@@ -37,23 +37,27 @@ const Landing = () => {
         Reports
       </div>
 
-      <div className='w-full flex flex-wrap p-2 py-4 gap-y-10 gap-x-1 justify-evenly'>
-        {
-          reports.map(item => (
-            <Panel title={item.title}>
-              <div className='w-full flex flex-col items-start p-2 gap-4 text-[12pt] text-blue-800'>
-                {
-                  item.components.map((value, key) => (
-                    <div className='border-b-[3px] w-full'>
-                      <Link to={`/reports/${value}`}>{(key+1) + '. ' + value}</Link>
-                    </div>
-                  ))
-                }
+      <div className="w-full flex flex-wrap p-4 gap-y-6 gap-x-4 justify-evenly">
+      {reports.map(item => (
+        <Panel key={item.id} title={item.title}>
+          <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4">
+            {item.components.map((value, key) => (
+              <div
+                key={key}
+                className="p-4 border rounded-lg shadow-sm bg-white hover:shadow-lg transition-shadow duration-200"
+              >
+                <Link
+                  to={`/reports/${value}`}
+                  className="text-blue-800 font-semibold"
+                >
+                  {(key + 1) + '. ' + value}
+                </Link>
               </div>
-            </Panel>
-          ))
-        }
-      </div>
+            ))}
+          </div>
+        </Panel>
+      ))}
+    </div>
     </div>
   )
 }

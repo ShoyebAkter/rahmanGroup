@@ -28,11 +28,11 @@ const Landing = () => {
     setShowPasswordModal(false);
   };
 
-  useEffect(() => {
-    if(!loginInfo.login){
-        navigate('/')
-    }
-  }, [loginInfo])
+  // useEffect(() => {
+  //   if(!loginInfo.login){
+  //       navigate('/')
+  //   }
+  // }, [loginInfo])
 
   return (
     <SideNavContext.Provider value={{toggleMenu, setToggleMenu}}>

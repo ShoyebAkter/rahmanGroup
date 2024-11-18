@@ -20,15 +20,18 @@ function EditInfo1({ profileInit, setProfileInit, isOpen, setIsOpen }) {
     DOB: profileInit.DOB,
     nationality: profileInit.nationality,
     mobile: profileInit.mobile,
-    agent: profileInit.telephone,
+    agent: profileInit.Agent.name,
     status: profileInit.status,
     email: profileInit.email,
+    bloodGroup: profileInit?.Health?.bloodGroup,
     idNo: profileInit.idNo,
     agentId: profileInit.agentId,
   });
+  // console.log(formData)
 
   const updateProfile = () => {
     setLoading(true);
+    // console.log(formData)
     axios
       .put(`${apiUrl}/employee/updatePersonalInfo`, formData, {
         headers: {
@@ -48,6 +51,7 @@ function EditInfo1({ profileInit, setProfileInit, isOpen, setIsOpen }) {
             telephone: formData.telephone,
             status: formData.status,
             idNo: formData.idNo,
+            bloodGroup:formData.bloodGroup,
             email: formData.email,
             agentId: formData.agentId,
           });
@@ -84,6 +88,28 @@ function EditInfo1({ profileInit, setProfileInit, isOpen, setIsOpen }) {
           console.error(err);
         }
       });
+
+      //for health 
+      axios.put(`${apiUrl}/employee/updateHealthInfo`, {
+        id: profileInit?.Health.id,
+    bloodGroup: formData.bloodGroup,
+      }, {
+        headers: {
+          loginToken: localStorage.getItem("loginToken")
+        }
+      }).then(result => {
+          setLoading(false)
+          
+       
+        
+      }).catch(err => {
+        setLoading(false)
+        swal({
+          icon:"error",
+          title:"Oops!",
+          text:err.response.data.error,
+        })
+      })
   };
 
   return (
@@ -183,6 +209,18 @@ function EditInfo1({ profileInit, setProfileInit, isOpen, setIsOpen }) {
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required
               />
+              <label className="block text-sm font-medium text-gray-700">
+                Blood Group
+              </label>
+              <input
+                type="bloodGroup"
+                value={formData.bloodGroup}
+                onChange={(e) =>
+                  setFormData({ ...formData, bloodGroup: e.target.value })
+                }
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required
+              />
 
               <label className="block text-sm font-medium text-gray-700">
                 Mobile
@@ -202,9 +240,9 @@ function EditInfo1({ profileInit, setProfileInit, isOpen, setIsOpen }) {
               </label>
               <input
                 type="text"
-                value={formData.telephone}
+                value={formData.agent}
                 onChange={(e) =>
-                  setFormData({ ...formData, telephone: e.target.value })
+                  setFormData({ ...formData, agent: e.target.value })
                 }
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />

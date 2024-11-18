@@ -1,9 +1,16 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext, useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import PaymentTableInit from './tables/PaymentTableInit'
+import { LoginContext } from '../../reactcontext/ReactContext';
 
 const Landing = () => {
-
+  const { loginInfo } = useContext(LoginContext);
+  const navigate=useNavigate()
+  useEffect(() => {
+    if (!loginInfo.login) {
+      navigate("/payments");
+    }
+  }, [loginInfo]);
   return (
     <div className='w-full bg-gray-50 flex h-full flex-col items-center justify-between relative gap-3'>
       <div className='self-start ml-10 mt-10'>

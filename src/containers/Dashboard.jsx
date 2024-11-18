@@ -32,7 +32,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (!loginInfo.login) {
-      navigate("/");
+      navigate("/dashboard");
     }
   }, [loginInfo]);
 // console.log(apiUrl)

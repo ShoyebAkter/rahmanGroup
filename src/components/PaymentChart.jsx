@@ -87,7 +87,7 @@ const PaymentChart = () => {
         return null;
       };
   return (
-    <div className="container mx-auto pt-10 bg-white overflow-auto">
+    <div className="container shadow-xl mx-auto pt-10 bg-white overflow-auto">
     <h2 className="text-xl font-semibold mb-4 w-full p-2 text-center">Payment & Due Payment Chart</h2>
     <PieChart width={600} height={400}>
           <Pie data={result2} dataKey="duePayments" cx="50%" cy="50%" outerRadius={120} fill="#8884d8" />

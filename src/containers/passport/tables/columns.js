@@ -10,9 +10,9 @@ export const COLUMNS = [
     accessor: row => `${row.passport.Employee.firstName} ${row.passport.Employee.lastName}`, // Custom accessor to combine first and last name
   },
   {
-    Header: "Blood group", // Changed header to Full Name
+    Header: "Mobile", // Changed header to Full Name
     Footer: "",
-    accessor: "passport.Employee.Health.bloodGroup"
+    accessor: "passport.Employee.mobile"
   },
   {
     Header: "Agent",

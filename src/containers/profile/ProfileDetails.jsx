@@ -293,7 +293,7 @@ const ProfileDetails = ({ profile, setSelectedProfile, setActiveTab }) => {
                     },
                     { label: "Date of Birth:", value: profileInit.DOB },
                     { label: "Nationality:", value: profileInit.nationality },
-                    { label: "Blood Group:", value: profileInit.Health.bloodGroup },
+                    { label: "Blood Group:", value: profileInit.Health?.bloodGroup },
                     { label: "Email Address:", value: profileInit.email },
                     { label: "Mobile No.:", value: profileInit.mobile },
                     { label: "Agent Name:", value: profileInit.Agent.name },

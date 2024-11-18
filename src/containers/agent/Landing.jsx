@@ -1,13 +1,15 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Panel from "../../components/Panel";
 import AgentTableInit from "./table/AgentTableInit";
 import axios from "axios";
 import swal from "sweetalert";
 import { AiOutlinePlus } from "react-icons/ai";
 import AgentFormModal from "./form/AgentFormModal";
+import { LoginContext } from "../../reactcontext/ReactContext";
 
 const Landing = () => {
+  const { loginInfo } = useContext(LoginContext);
   const apiUrl = process.env.REACT_APP_API_URL;
   const [agents, setAgents] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -19,6 +21,12 @@ const Landing = () => {
     email: "",
   });
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const navigate=useNavigate()
+  useEffect(() => {
+    if (!loginInfo.login) {
+      navigate("/agents");
+    }
+  }, [loginInfo]);
 
   const openModal = () => {
     setModalIsOpen(true);

@@ -56,13 +56,14 @@ const AgentWithProfiles = () => {
         })
         .then(res => {
             setRecords(res.data)
+            console.log(res.data)
             setFlattenedData(prev => {
                 return res.data.map((item) => ({
-                    passportNo: item.emp.Passports[0].passportNo,
+                    passportNo: item.emp?.Passports[0]?.passportNo,
                     idNo: item.emp.idNo,
                     fullName: item.emp.firstName + " " + item.emp.lastName,
                     nationality: item.emp.nationality,
-                    bloodGroup: item.emp.Health.bloodGroup,
+                    bloodGroup: item.emp.Health?.bloodGroup,
                     paymentStatus: item.balance.status,
                     balance: parseFloat(item.balance.balance).toLocaleString(),
                 }));

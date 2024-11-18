@@ -1,9 +1,17 @@
-import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import React, { useContext, useEffect } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import PassportTableInit from './tables/PassportTableInit'
+import { LoginContext } from '../../reactcontext/ReactContext';
 
 const Landing = () => {
   const location = useLocation();
+  const { loginInfo } = useContext(LoginContext);
+  const navigate=useNavigate()
+  useEffect(() => {
+    if (!loginInfo.login) {
+      navigate("/passport_exp");
+    }
+  }, [loginInfo]);
   let pathKey = location.pathname.split("/").pop();
   // console.log(pathKey)
   if(pathKey==="passport_exp"){

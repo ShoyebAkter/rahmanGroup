@@ -58,7 +58,7 @@ const ExpiredPassports = () => {
           setErrorMessage(res.data.error);
         } else {
           setRecords(res.data.passports);
-
+          console.log(res.data)
           setFlattenedData(prev => {
             return res.data.passports.map((item) => ({
                 passportNo: item.passport.passportNo,

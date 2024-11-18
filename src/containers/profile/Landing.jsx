@@ -38,7 +38,7 @@ const Landing = () => {
   ];
 
   useEffect(() => {
-    !loginInfo.login && navigate("/");
+    !loginInfo.login && navigate("/profile");
   }, [loginInfo]);
 
   // Handle tab change

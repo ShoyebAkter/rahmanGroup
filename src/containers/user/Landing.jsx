@@ -36,7 +36,7 @@ const Landing = () => {
   ];
 
   useEffect(() => {
-    !loginInfo.login && navigate("/");
+    !loginInfo.login && navigate("/users");
   }, [loginInfo]);
   console.log(loginInfo.userDetails.role)
   // Handle tab change
