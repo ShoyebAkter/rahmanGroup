@@ -127,7 +127,7 @@ function ProfileTable({ data, columns, setActiveTab, setSelectedProfile }) {
       </div> */}
 
       {/* On desktop */}
-      <div className="container mx-auto py-6 px-4 w-full">
+      <div className="container py-6  w-full">
         {/* Filter Section */}
         <div className="mb-4 flex justify-between items-center">
           <div className="flex-1 pr-4">
@@ -138,7 +138,7 @@ function ProfileTable({ data, columns, setActiveTab, setSelectedProfile }) {
                 placeholderText="Search Employee"
                 className="w-full pl-10 pr-4 py-2 rounded-lg shadow focus:outline-none focus:shadow-outline text-gray-600 font-medium"
               />
-              <div className="absolute top-6 left-5 inline-flex items-center p-2">
+              <div className="absolute top-6 left-4  inline-flex items-center py-2 pl-1">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-6 h-6 text-gray-400"
