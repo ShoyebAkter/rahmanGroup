@@ -42,17 +42,15 @@ const Landing = () => {
         <Panel key={item.id} title={item.title}>
           <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4">
             {item.components.map((value, key) => (
-              <div
-                key={key}
-                className="p-4 border rounded-lg shadow-sm bg-white hover:shadow-lg transition-shadow duration-200"
-              >
+              
                 <Link
                   to={`/reports/${value}`}
-                  className="text-blue-800 font-semibold"
+                  
                 >
-                  {(key + 1) + '. ' + value}
+                  <div key={key}
+                className="p-4 border rounded-lg text-blue-600 shadow-sm bg-white hover:shadow-lg transition-shadow duration-200"
+              >{(key + 1) + '. ' + value}</div>
                 </Link>
-              </div>
             ))}
           </div>
         </Panel>

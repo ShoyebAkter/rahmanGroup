@@ -72,7 +72,7 @@ console.log(payments)
         <YAxis />
         <Tooltip />
         <Legend />
-          <Bar dataKey="value" fill="#8884d8" radius={[20, 20, 20, 20]} label={{ position: 'top' }} />
+          <Bar dataKey="value" fill="#8884d8" radius={[20, 20, 20, 20]} label={{ position: 'null', fill: '#FFFFFF' }} />
         </BarChart>
     </div>
   );

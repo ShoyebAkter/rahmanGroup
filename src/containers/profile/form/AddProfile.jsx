@@ -99,11 +99,11 @@ const validationSchema = Yup.object().shape({
       }
     }).then(result => {
       setLoading(false)
-      console.log(result)
+      // console.log(result)
       if(result.status === 200){
-      //  setIsModalOpen(true)
+       setIsModalOpen(true)
        setData(result.data.employeeInfo)
-       navigate('/dashboard')
+      //  navigate('/dashboard')
       }
     }).catch(err => {
       console.log(err)
@@ -115,7 +115,7 @@ const validationSchema = Yup.object().shape({
     <div className="flex flex-col w-full items-center justify-center overflow-auto">
       <Formik
         initialValues={initValues}
-        // validationSchema={validationSchema}
+        validationSchema={validationSchema}
         onSubmit={onSubmit}
       >
         {/* form should be wrappped in formik for easy access to formik context variables */}

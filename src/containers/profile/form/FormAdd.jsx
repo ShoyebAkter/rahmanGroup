@@ -95,8 +95,8 @@ const FormAdd = ({ initValues, loading }) => {
               name="idNo"
               className={
                 touched.idNo && errors.idNo
-                  ? "mt-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800 w-full p-3 px-5 text-red-800 border-2 border-red-500"
-                  : "mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                  ? "mt-2 rounded-lg w-full p-3 px-5 text-red-800 border-2 border-red-500"
+                  : "mt-2 p-4 w-full border-2 rounded-lg"
               }
             />
           </div>
@@ -113,7 +113,7 @@ const FormAdd = ({ initValues, loading }) => {
               className={
                 touched.firstName && errors.firstName
                   ? "w-full p-3 px-5 text-red-800 border-2 border-red-500"
-                  : "mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                  : "mt-2 p-4 w-full border-2 rounded-lg"
               }
             />
           </div>
@@ -130,7 +130,7 @@ const FormAdd = ({ initValues, loading }) => {
               className={
                 touched.lastName && errors.lastName
                   ? "w-full p-3 px-5 text-red-800 border-2 border-red-500"
-                  : "mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                  : "mt-2 p-4 w-full border-2 rounded-lg"
               }
             />
           </div>
@@ -148,7 +148,7 @@ const FormAdd = ({ initValues, loading }) => {
               className={
                 touched.email && errors.email
                   ? "w-full p-3 px-5 text-red-800 border-2 border-red-500"
-                  : "mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                  : "mt-2 p-4 w-full border-2 rounded-lg"
               }
             />
           </div>
@@ -166,7 +166,7 @@ const FormAdd = ({ initValues, loading }) => {
               className={
                 touched.mobile && errors.mobile
                   ? "w-full p-3 px-5 text-red-800 border-2 border-red-500"
-                  : "mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                  : "mt-2 p-4 w-full border-2 rounded-lg"
               }
             />
           </div>
@@ -187,7 +187,7 @@ const FormAdd = ({ initValues, loading }) => {
               className={
                 touched.DOB && errors.DOB
                   ? "w-full p-3 px-5 text-red-800 border-2 border-red-500"
-                  : "mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                  : "mt-2 p-4 w-full border-2 rounded-lg"
               }
             />
           </div>
@@ -308,7 +308,7 @@ const FormAdd = ({ initValues, loading }) => {
               className={
                 touched.mobile && errors.mobile
                   ? "w-full p-3 px-5 text-red-800 border-2 border-red-500"
-                  : "mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                  : "mt-2 p-4 w-full border-2 rounded-lg"
               }
             />
           </div>
@@ -326,7 +326,7 @@ const FormAdd = ({ initValues, loading }) => {
               className={
                 touched.mobile && errors.mobile
                   ? "w-full p-3 px-5 text-red-800 border-2 border-red-500"
-                  : "mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                  : "mt-2 p-4 w-full border-2 rounded-lg"
               }
             />
           </div>
@@ -344,7 +344,7 @@ const FormAdd = ({ initValues, loading }) => {
               className={
                 touched.mobile && errors.mobile
                   ? "w-full p-3 px-5 text-red-800 border-2 border-red-500"
-                  : "mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                  : "mt-2 p-4 w-full border-2 rounded-lg"
               }
             >
               <option value="">Select Blood Group</option>
