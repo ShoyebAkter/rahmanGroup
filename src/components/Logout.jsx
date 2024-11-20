@@ -1,10 +1,11 @@
 import React, { useContext } from 'react'
 import { LoginContext } from '../reactcontext/ReactContext'
 import {AiOutlineLogout} from 'react-icons/ai'
+import { useNavigate } from 'react-router-dom'
 
 const Logout = () => {
     const { loginInfo, setLoginInfo } = useContext(LoginContext)
-
+    const navigate=useNavigate()
     const logout = () => {
         setLoginInfo({
             ...loginInfo,
@@ -17,7 +18,8 @@ const Logout = () => {
             },
             login: false
         })
-    localStorage.removeItem('loginToken')
+    localStorage.removeItem('loginToken');
+    navigate("/login")
   }
   return (
     <div>

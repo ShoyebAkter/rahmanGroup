@@ -12,7 +12,7 @@ const ExpiredVisa = () => {
   const apiUrl = process.env.REACT_APP_API_URL
   const { loginInfo } = useContext(LoginContext);
   const navigate = useNavigate();
-  const [togglePreview, setTogglePreview] = useState(false)
+  const [togglePreview, setTogglePreview] = useState(true)
   const [records, setRecords] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(true);
