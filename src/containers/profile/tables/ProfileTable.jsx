@@ -127,7 +127,7 @@ function ProfileTable({ data, columns, setActiveTab, setSelectedProfile }) {
       </div> */}
 
       {/* On desktop */}
-      <div className=" py-6 px-2 w-full">
+      <div className="mx-auto py-6 px-2 w-full">
         {/* Filter Section */}
         <div className="mb-4 flex justify-between items-center">
           <div className="flex-1 pr-4">
