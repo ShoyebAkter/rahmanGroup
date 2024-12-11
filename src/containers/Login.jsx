@@ -33,57 +33,56 @@ const Login = () => {
     passwd: Yup.string().required("Password is required"),
   });
 
-  const onSubmit = (data) => {
-    setLoading(true);
-    console.log(data);
-    axios
-      .post(`${apiUrl}/auth/login`, { ...data, password: data.passwd })
-      .then((res) => {
-        localStorage.setItem("loginToken", res.data);
-        // console.log(res)
-        axios
-          .get(`${apiUrl}/auth/authenticatedUser`, {
-            headers: {
-              loginToken: localStorage.getItem("loginToken"),
-            },
-          })
-          .then((res) => {
-            const userData = {
-              ...loginInfo,
-              userDetails: {
-                id: res.data.loginInfo.userId,
-                email: res.data.loginInfo.email,
-                firstName: res.data.loginInfo.User.firstName,
-                lastName: res.data.loginInfo.User.lastName,
-                role: res.data.loginInfo.UserRole.roleName,
-              },
-              login: true,
-            };
-
-            setLoginInfo(userData);
-
-            // console.log(res.data)
-            setLoading(false);
-            navigate("/dashboard");
-          })
-          .catch((err) => {
-            if (err.response) {
-              console.log(err.response.data.error);
-            } else {
-              console.log(err);
-            }
-          });
-      })
-      .catch((err) => {
+  const onSubmit = async (data) => {
+    try {
+      setLoading(true);
+      console.log("1")
+      // Log in and fetch user data in parallel
+      const loginResponse = await axios.post(`${apiUrl}/auth/login`, {
+        ...data,
+        password: data.passwd,
+      });
+      console.log("2")
+      const loginToken = loginResponse.data;
+      localStorage.setItem("loginToken", loginToken);
+  
+      // Fetch authenticated user details
+      const userResponse = await axios.get(`${apiUrl}/auth/authenticatedUser`, {
+        headers: {
+          loginToken: loginToken,
+        },
+      });
+      console.log("3")
+      const userData = {
+        ...loginInfo,
+        userDetails: {
+          id: userResponse.data.loginInfo.userId,
+          email: userResponse.data.loginInfo.email,
+          firstName: userResponse.data.loginInfo.User.firstName,
+          lastName: userResponse.data.loginInfo.User.lastName,
+          role: userResponse.data.loginInfo.UserRole.roleName,
+        },
+        login: true,
+      };
+      console.log("4")
+      setLoginInfo(userData);
+      setLoading(false);
+      navigate("/dashboard");
+    } catch (err) {
+      if (err.response) {
+        console.log(err.response.data.error);
         swal({
           icon: "error",
           title: "Error !",
-          text: JSON.stringify(err.response.data.error),
+          text: err.response.data.error,
         });
+      } else {
         console.log(err);
-        setLoading(false);
-      });
+      }
+      setLoading(false);
+    }
   };
+  
 
   return (
     //login container

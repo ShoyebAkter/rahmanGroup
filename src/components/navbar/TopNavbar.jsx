@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { AiFillCaretDown, AiOutlineSearch, AiOutlineUser, AiFillBell, AiFillMessage, AiFillCaretUp, AiOutlineMenuFold, AiOutlineMenuUnfold } from 'react-icons/ai'
 import { LoginContext, SideNavContext } from '../../reactcontext/ReactContext'
 import Logout from '../Logout'
@@ -9,10 +9,26 @@ const TopNavbar = ({handlePasswordEdit}) => {
   const {loginInfo} = useContext(LoginContext)
   const [onProfileClick , setonProfileClick ] = useState(false)
   const {toggleMenu, setToggleMenu} = useContext(SideNavContext)
-
+  const profileRef = useRef(null);
   const profileClick = () => {
     setonProfileClick(prev => !prev)
   }
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (profileRef.current && !profileRef.current.contains(event.target)) {
+        setonProfileClick(false);
+      }
+    };
+
+    // Add event listener for clicks
+    document.addEventListener("mousedown", handleOutsideClick);
+
+    // Cleanup the event listener on unmount
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
 
   const menuButtonClick = () => {
     setToggleMenu(prev => !prev)
@@ -46,7 +62,7 @@ const TopNavbar = ({handlePasswordEdit}) => {
 
       <div className='flex flex-row items-center justify-center gap-x-2 mr-2 p-1 px-3 shadow-sm rounded-lg'>
 
-        <div className='flex flex-row relative items-center justify-center gap-x-2 cursor-pointer' onClick={profileClick}>
+        <div className='flex flex-row relative items-center justify-center gap-x-2 cursor-pointer' ref={profileRef} onClick={profileClick}>
           <div className='w-8 h-8 rounded-full flex bg-slate-300 items-center justify-center'>
             <AiOutlineUser />
           </div>
